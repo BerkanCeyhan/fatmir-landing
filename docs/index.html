@@ -31,7 +31,7 @@
   @media print { body { background:#fff; } }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior:auto; }
-    *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+    *, *::before, *::after { animation-duration:.01ms !important; animation-delay:0s !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
   }
 </style>
 </head>
@@ -97,7 +97,7 @@
         <p style="margin:0 0 14px; font-size:clamp(1.05rem,1.6vw,1.25rem); line-height:1.6; color:#4E4740;">Handel, Onlinehandel, Dienstleistung, Sport, Industrie.</p>
         <p style="margin:0; max-width:36ch; font-size:1.05rem; line-height:1.68; color:#6E665C;">Vom Familienbetrieb bis zur Erlebnistherme. Alle mit demselben Ziel: gefunden werden und verkaufen.</p>
       </div>
-      <div data-spiral style="position:relative; height:clamp(400px,48vw,540px); overflow:hidden; isolation:isolate; touch-action:pan-x; cursor:grab; perspective:1000px;">
+      <div data-spiral style="position:relative; height:clamp(400px,48vw,540px); overflow:hidden; isolation:isolate; touch-action:pan-x; cursor:grab; perspective:1000px; -webkit-mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);">
         <div data-spiral-stage style="position:absolute; inset:0; transform-style:preserve-3d;">
           <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-brustbizeps.png" alt="Brustbizeps" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
           <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-nosheer.png" alt="NoSheer" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
@@ -240,9 +240,9 @@
   <section id="awards" style="background:#F3EEE6;">
     <div style="max-width:1220px; margin:0 auto; padding:clamp(72px,9vw,128px) 22px;">
       <div data-reveal style="display:flex; flex-wrap:wrap; gap:22px 48px; align-items:flex-end; justify-content:space-between; margin-bottom:clamp(34px,4vw,56px);">
-        <div style="display:flex; flex-direction:column; gap:18px; max-width:14ch;">
+        <div style="display:flex; flex-direction:column; gap:18px; align-items:flex-start;">
           <img src="assets/icon-pokal.png" alt="" style="width:42px; height:42px;">
-          <h2 style="margin:0; font-size:clamp(2rem,4.6vw,3.6rem); line-height:1.02; letter-spacing:-.03em;">Vier Jahre in Folge ausgezeichnet</h2>
+          <h2 style="margin:0; max-width:14ch; font-size:clamp(2rem,4.6vw,3.6rem); line-height:1.02; letter-spacing:-.03em;">Vier Jahre in Folge ausgezeichnet</h2>
         </div>
         <p style="margin:0; max-width:32ch; font-size:1.08rem; line-height:1.65; color:#4E4740;">Bester Onlineshop 2023, Südwestfalenaward 2024, 2025 und 2026. Nicht fürs Regal, sondern als Beleg, dass die Systeme greifen.</p>
       </div>
@@ -724,7 +724,6 @@ class Component extends DCLogic {
     this._observers.push(ro);
 
     doc.querySelectorAll('[data-hero] [data-reveal]').forEach((el, i) => {
-      el.style.opacity = '0';
       el.style.animation = 'rise .85s cubic-bezier(.22,.9,.3,1) ' + (0.15 + i * 0.1) + 's both';
     });
 
@@ -790,6 +789,11 @@ class Component extends DCLogic {
       if (this._bar && w >= 768) this._bar.style.display = 'none';
     };
     applyResponsive();
+    this._revealFallback = setTimeout(() => {
+      doc.querySelectorAll('[data-reveal]').forEach(el => {
+        if (getComputedStyle(el).opacity === '0') el.style.opacity = '';
+      });
+    }, 2500);
     this._onResize = applyResponsive;
     window.addEventListener('resize', applyResponsive);
 
@@ -806,6 +810,7 @@ class Component extends DCLogic {
     (this._observers || []).forEach(o => o.disconnect());
     (this._cleanups || []).forEach(fn => fn());
     (this._rafs || []).forEach(id => cancelAnimationFrame(id));
+    clearTimeout(this._revealFallback);
     if (this._onResize) window.removeEventListener('resize', this._onResize);
   }
 }
