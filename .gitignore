@@ -1,0 +1,14 @@
+.env
+.env.*
+gen/
+uploads/
+assets/
+tmp-logos/
+live-v2/
+*.raw
+fatmir-landing-page*.html
+fatmir-adzaj-landing.html
+Fatmir Landing Page.dc.html
+.thumbnail
+support.js
+prompt.txt
