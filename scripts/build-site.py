@@ -45,7 +45,7 @@ class DCLogic {
 %s
 
 (function () {
-  var page = new Component({ showKurs: true, faqSingleOpen: true, spiralSpeed: 0.55 });
+  var page = new Component({ showKurs: true, showLab: false, faqSingleOpen: true, spiralSpeed: 0.55 });
   var vals = page.renderVals();
   document.querySelectorAll('[data-faq] button[aria-expanded]').forEach(function (b) {
     b.addEventListener('click', vals.toggleFaq);
