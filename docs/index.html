@@ -43,7 +43,7 @@
 
   <nav data-nav style="position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:50; width:calc(100% - 24px); max-width:1120px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:9px 9px 9px 20px; border-radius:999px; border:1px solid transparent; background:transparent; transition:background .45s ease, border-color .45s ease, box-shadow .45s ease, backdrop-filter .45s ease;">
     <a href="#top" style="display:flex; align-items:center; min-height:44px;">
-      <img src="assets/logo-ink.png" alt="Fatmir Adzaj" style="height:28px; width:auto; display:block;">
+      <img src="assets/logo-ink.png" alt="Fatmir Adzaj" style="height:36px; width:auto; display:block;">
     </a>
     <div data-nav-links style="display:none; gap:30px; align-items:center; font-size:15px; font-weight:500; color:#4E4740;">
       <a href="#hebel" style="color:inherit;">Leistungen</a>
@@ -56,18 +56,23 @@
 
   <section id="top" data-hero style="position:relative; background:#FBF8F4; overflow:hidden;">
     <div data-hero-blob style="position:absolute; right:-14%; top:-8%; width:min(62vw,760px); height:min(62vw,760px); border-radius:50%; background:rgba(240,80,30,.10);"></div>
-    <img data-hero-wide src="assets/fatmir-hero-wide.webp" alt="Fatmir Adzaj im Studio" style="display:none; width:100%; height:auto; vertical-align:bottom;">
-    <div style="position:relative; z-index:2; max-width:1220px; margin:0 auto; padding:132px 22px 40px; display:grid; grid-template-columns:1fr; gap:clamp(24px,4vw,56px); align-items:center;" data-hero-grid>
-      <div>
-        <h1 data-reveal style="margin:0 0 22px; font-size:clamp(2.9rem, 7.4vw, 6rem); line-height:.94; letter-spacing:-.035em; text-wrap:balance;">
+    <div data-hero-grid style="position:relative; z-index:2; max-width:1320px; margin:0 auto; padding:122px 22px 48px; display:grid; grid-template-columns:1fr; gap:clamp(28px,4vw,66px); align-items:center;">
+      <div data-hero-photo data-reveal style="display:none; position:relative; border-radius:32px; overflow:hidden; background:#2A2233;">
+        <img src="assets/fatmir-hero-photo.webp" alt="Fatmir Adzaj mit dem Südwestfalenaward" style="display:block; width:100%; height:100%; object-fit:cover; object-position:50% 32%;">
+        <div style="position:absolute; left:22px; bottom:22px; display:inline-flex; align-items:center; gap:9px; padding:9px 16px; border-radius:999px; background:rgba(251,248,244,.92); font-size:.9rem; font-weight:600; color:#17140F;">
+          <span style="width:7px; height:7px; border-radius:50%; background:#F0501E;"></span> Bester Onlineshop, Südwestfalenaward
+        </div>
+      </div>
+      <div data-hero-text>
+        <h1 data-reveal style="margin:0 0 22px; font-size:clamp(2.9rem, 6.6vw, 5.4rem); line-height:.94; letter-spacing:-.035em; text-wrap:balance;">
           Sichtbar werden.<br>
           <span style="color:#F0501E;">Und verkaufen.</span>
         </h1>
-        <p data-reveal style="margin:0 0 30px; max-width:30ch; font-size:clamp(1.08rem,1.5vw,1.32rem); line-height:1.6; color:#4E4740;">
+        <p data-reveal style="margin:0 0 30px; max-width:32ch; font-size:clamp(1.08rem,1.5vw,1.32rem); line-height:1.6; color:#4E4740;">
           Digitale Vermarktung, planbares Wachstum und Prozesse, die auch ohne dich laufen. Persönlich begleitet, nicht von der Stange.
         </p>
         <div data-reveal style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
-          <a href="#gespraech" data-magnet style="display:inline-flex; align-items:center; justify-content:center; min-height:58px; padding:17px 34px; border-radius:999px; background:#F0501E; color:#17140F; font-size:1.05rem; font-weight:600; transition:transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease;">Jetzt sichtbar werden!</a>
+          <a href="#gespraech" data-specular data-line="#FFE9DC" data-base="#8A3410" data-magnet style="position:relative; display:inline-flex; align-items:center; justify-content:center; min-height:58px; padding:17px 34px; border-radius:999px; background:#F0501E; color:#17140F; font-size:1.05rem; font-weight:600; transition:transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease;"><span data-specular-fx style="position:absolute; inset:-20px; pointer-events:none; z-index:1;"></span><span style="position:relative; z-index:2;">Jetzt sichtbar werden!</span></a>
           <a href="#hebel" data-magnet style="display:inline-flex; align-items:center; justify-content:center; min-height:58px; padding:17px 28px; border-radius:999px; border:1.5px solid rgba(23,20,15,.2); color:#17140F; font-size:1.05rem; font-weight:500; transition:transform .3s cubic-bezier(.25,.46,.45,.94), border-color .3s ease;">Was ich mache</a>
         </div>
         <div data-reveal style="display:flex; flex-wrap:wrap; align-items:center; gap:10px 22px; margin-top:30px; font-size:.95rem; font-weight:500; color:#7A7269;">
@@ -85,44 +90,28 @@
     </div>
   </section>
 
-  <section style="background:#FBF8F4;">
-    <div style="max-width:1220px; margin:0 auto; padding:clamp(30px,4vw,56px) 22px clamp(46px,6vw,84px);">
-      <div data-reveal style="display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 20px; margin-bottom:clamp(26px,3vw,40px);">
-        <h2 style="margin:0; font-size:clamp(1.5rem,3.2vw,2.5rem); line-height:1.05; letter-spacing:-.03em;">Unsere sichtbarsten Partner</h2>
-        <p style="margin:0; font-size:clamp(1rem,1.6vw,1.25rem); color:#6E665C;">Handel, Onlinehandel, Dienstleistung, Sport, Industrie</p>
+  <section id="partner" style="background:#FBF8F4;">
+    <div style="max-width:1220px; margin:0 auto; padding:clamp(46px,6vw,92px) 22px clamp(56px,7vw,104px); display:grid; grid-template-columns:1fr; gap:clamp(24px,4vw,56px); align-items:center;" data-cols2>
+      <div data-reveal>
+        <h2 style="margin:0 0 18px; max-width:14ch; font-size:clamp(1.9rem,4.2vw,3.2rem); line-height:1.04; letter-spacing:-.03em;">Unsere sichtbarsten Partner</h2>
+        <p style="margin:0 0 14px; font-size:clamp(1.05rem,1.6vw,1.25rem); line-height:1.6; color:#4E4740;">Handel, Onlinehandel, Dienstleistung, Sport, Industrie.</p>
+        <p style="margin:0; max-width:36ch; font-size:1.05rem; line-height:1.68; color:#6E665C;">Vom Familienbetrieb bis zur Erlebnistherme. Alle mit demselben Ziel: gefunden werden und verkaufen.</p>
       </div>
-      <div data-marquee-wrap style="overflow:hidden; -webkit-mask-image:linear-gradient(to right, transparent, #000 7%, #000 93%, transparent); mask-image:linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);">
-        <div data-marquee style="display:flex; width:max-content; gap:64px; align-items:center; animation:marquee 46s linear infinite;">
-          <div style="display:flex; gap:64px; align-items:center;">
-            <img src="assets/partner-brustbizeps.png" alt="Brustbizeps" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-nosheer.png" alt="NoSheer" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-hh-simonsen.png" alt="HH Simonsen" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-biyon.png" alt="Biyon" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-ormma.png" alt="Ormma" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-kuehnundpartner.png" alt="Kühn und Partner" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-inox.png" alt="Inox Vertrieb" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-maximare.png" alt="Maximare" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-crossfit-dortmund.png" alt="CrossFit Dortmund" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-losfizio.png" alt="Los Fizio Köln" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-glueckauf.png" alt="Glückauf Essen" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-ihk-hagen.png" alt="SIHK Hagen" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-06.png" alt="Partner" style="height:52px; width:auto; opacity:.72;">
-          </div>
-          <div aria-hidden="true" style="display:flex; gap:64px; align-items:center;">
-            <img src="assets/partner-brustbizeps.png" alt="" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-nosheer.png" alt="" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-hh-simonsen.png" alt="" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-biyon.png" alt="" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-ormma.png" alt="" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-kuehnundpartner.png" alt="" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-inox.png" alt="" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-maximare.png" alt="" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-crossfit-dortmund.png" alt="" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-losfizio.png" alt="" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-glueckauf.png" alt="" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-ihk-hagen.png" alt="" style="height:52px; width:auto; opacity:.72;">
-            <img src="assets/partner-06.png" alt="" style="height:52px; width:auto; opacity:.72;">
-          </div>
+      <div data-spiral style="position:relative; height:clamp(400px,48vw,540px); overflow:hidden; isolation:isolate; touch-action:pan-x; cursor:grab; perspective:1000px;">
+        <div data-spiral-stage style="position:absolute; inset:0; transform-style:preserve-3d;">
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-brustbizeps.png" alt="Brustbizeps" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-nosheer.png" alt="NoSheer" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-hh-simonsen.png" alt="HH Simonsen" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-biyon.png" alt="Biyon" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-ormma.png" alt="Ormma" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-kuehnundpartner.png" alt="Kühn und Partner" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-inox.png" alt="Inox Vertrieb" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-maximare.png" alt="Maximare" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-crossfit-dortmund.png" alt="CrossFit Dortmund" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-losfizio.png" alt="Los Fizio Köln" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-glueckauf.png" alt="Glückauf Essen" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-ihk-hagen.png" alt="SIHK Hagen" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:136px; height:96px; padding:14px; border-radius:16px; background:#FFFDFB; border:1px solid rgba(23,20,15,.1); box-shadow:0 14px 34px rgba(23,20,15,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="assets/partner-06.png" alt="Partner" style="display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; user-select:none;" draggable="false"></div>
         </div>
       </div>
     </div>
@@ -217,15 +206,15 @@
       <div style="display:grid; grid-template-columns:1fr; gap:20px;" data-cols3>
         <div data-reveal style="background:#FBF8F4; border-radius:26px; padding:clamp(26px,3vw,36px); display:flex; flex-direction:column; gap:22px;">
           <p style="margin:0; font-size:1.12rem; line-height:1.55; letter-spacing:-.01em;">„Vorher haben wir gepostet und gehofft. Nach drei Monaten kam der erste Monat mit mehr Umsatz aus Social als aus dem Laden.“</p>
-          <img src="assets/partner-nosheer.png" alt="" style="margin-top:auto; height:30px; width:auto; opacity:.6;">
+          <img src="assets/partner-nosheer.png" alt="" style="margin-top:auto; align-self:flex-start; height:32px; width:auto; max-width:60%; object-fit:contain; opacity:.6;">
         </div>
         <div data-reveal style="background:#FBF8F4; border-radius:26px; padding:clamp(26px,3vw,36px); display:flex; flex-direction:column; gap:22px;">
           <p style="margin:0; font-size:1.12rem; line-height:1.55; letter-spacing:-.01em;">„Fatmir hat unser Live Shopping von null aufgebaut. Der zweite Stream brachte 300 Bestellungen an einem Dienstagabend.“</p>
-          <img src="assets/partner-biyon.png" alt="" style="margin-top:auto; height:30px; width:auto; opacity:.6;">
+          <img src="assets/partner-biyon.png" alt="" style="margin-top:auto; align-self:flex-start; height:32px; width:auto; max-width:60%; object-fit:contain; opacity:.6;">
         </div>
         <div data-reveal style="background:#FBF8F4; border-radius:26px; padding:clamp(26px,3vw,36px); display:flex; flex-direction:column; gap:22px;">
           <p style="margin:0; font-size:1.12rem; line-height:1.55; letter-spacing:-.01em;">„Zwölf Bewerbungen in vier Wochen. Davor hatten wir ein halbes Jahr lang keine einzige brauchbare.“</p>
-          <img src="assets/partner-crossfit-dortmund.png" alt="" style="margin-top:auto; height:30px; width:auto; opacity:.6;">
+          <img src="assets/partner-crossfit-dortmund.png" alt="" style="margin-top:auto; align-self:flex-start; height:32px; width:auto; max-width:60%; object-fit:contain; opacity:.6;">
         </div>
       </div>
     </div>
@@ -243,7 +232,7 @@
         <p style="margin:0 0 18px; font-size:1.1rem; line-height:1.7; color:#4E4740;">In der Corona Zeit habe ich angefangen, Unternehmen digital sichtbar zu machen. Schulungen für Social Media, Kampagnen mit klarem Ziel, Inhalte, die zur Marke passen.</p>
         <p style="margin:0 0 18px; font-size:1.1rem; line-height:1.7; color:#4E4740;">Daraus sind über 100 Partnerprojekte geworden, vom Handwerksbetrieb bis zum Onlineshop mit Auszeichnung.</p>
         <p style="margin:0 0 32px; font-size:1.1rem; line-height:1.7; color:#4E4740;">Ich arbeite nah dran, rede Klartext und freue mich ehrlich, wenn bei dir die Zahlen steigen.</p>
-        <img src="assets/logo-ink.png" alt="Fatmir Adzaj" style="height:46px; width:auto; display:block; opacity:.9;">
+        <img src="assets/logo-ink.png" alt="Fatmir Adzaj" style="height:92px; width:auto; display:block; opacity:.92;">
       </div>
     </div>
   </section>
@@ -251,7 +240,10 @@
   <section id="awards" style="background:#F3EEE6;">
     <div style="max-width:1220px; margin:0 auto; padding:clamp(72px,9vw,128px) 22px;">
       <div data-reveal style="display:flex; flex-wrap:wrap; gap:22px 48px; align-items:flex-end; justify-content:space-between; margin-bottom:clamp(34px,4vw,56px);">
-        <h2 style="margin:0; max-width:14ch; font-size:clamp(2rem,4.6vw,3.6rem); line-height:1.02; letter-spacing:-.03em;">Vier Jahre in Folge ausgezeichnet</h2>
+        <div style="display:flex; flex-direction:column; gap:18px; max-width:14ch;">
+          <img src="assets/icon-pokal.png" alt="" style="width:42px; height:42px;">
+          <h2 style="margin:0; font-size:clamp(2rem,4.6vw,3.6rem); line-height:1.02; letter-spacing:-.03em;">Vier Jahre in Folge ausgezeichnet</h2>
+        </div>
         <p style="margin:0; max-width:32ch; font-size:1.08rem; line-height:1.65; color:#4E4740;">Bester Onlineshop 2023, Südwestfalenaward 2024, 2025 und 2026. Nicht fürs Regal, sondern als Beleg, dass die Systeme greifen.</p>
       </div>
       <div style="display:grid; grid-template-columns:1fr; gap:20px;" data-cols2>
@@ -262,11 +254,11 @@
           <img src="assets/illu-award-2.webp" alt="Auszeichnung Bester Onlineshop" loading="lazy" style="display:block; width:100%; height:auto;">
         </div>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:20px;" data-cols4>
-        <div data-reveal style="background:#FBF8F4; border-radius:20px; padding:24px 26px;"><div style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:1.7rem; letter-spacing:-.03em; color:#F0501E;">2023</div><div style="margin-top:6px; font-size:.98rem; color:#4E4740;">Bester Onlineshop</div></div>
-        <div data-reveal style="background:#FBF8F4; border-radius:20px; padding:24px 26px;"><div style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:1.7rem; letter-spacing:-.03em; color:#F0501E;">2024</div><div style="margin-top:6px; font-size:.98rem; color:#4E4740;">Südwestfalenaward</div></div>
-        <div data-reveal style="background:#FBF8F4; border-radius:20px; padding:24px 26px;"><div style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:1.7rem; letter-spacing:-.03em; color:#F0501E;">2025</div><div style="margin-top:6px; font-size:.98rem; color:#4E4740;">Südwestfalenaward</div></div>
-        <div data-reveal style="background:#FBF8F4; border-radius:20px; padding:24px 26px;"><div style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:1.7rem; letter-spacing:-.03em; color:#F0501E;">2026</div><div style="margin-top:6px; font-size:.98rem; color:#4E4740;">Südwestfalenaward</div></div>
+      <div data-awards style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:20px; align-items:stretch;">
+        <div data-award data-span="2" data-reveal style="background:#FBF8F4; border-radius:22px; padding:24px 26px; display:flex; flex-direction:column; justify-content:flex-end; min-height:120px;"><div style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:1.6rem; line-height:1; letter-spacing:-.035em; color:#F0501E;">2023</div><div style="margin-top:8px; font-size:.98rem; color:#4E4740;">Bester Onlineshop</div></div>
+        <div data-award data-span="4" data-reveal style="background:#FBF8F4; border-radius:22px; padding:40px 34px; display:flex; flex-direction:column; justify-content:flex-end; min-height:120px;"><div style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:3rem; line-height:1; letter-spacing:-.035em; color:#F0501E;">2024</div><div style="margin-top:8px; font-size:.98rem; color:#4E4740;">Südwestfalenaward</div></div>
+        <div data-award data-span="3" data-reveal style="background:#FBF8F4; border-radius:22px; padding:30px 28px; display:flex; flex-direction:column; justify-content:flex-end; min-height:120px;"><div style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:2rem; line-height:1; letter-spacing:-.035em; color:#F0501E;">2025</div><div style="margin-top:8px; font-size:.98rem; color:#4E4740;">Südwestfalenaward</div></div>
+        <div data-award data-span="3" data-reveal style="background:#FBF8F4; border-radius:22px; padding:36px 30px; display:flex; flex-direction:column; justify-content:flex-end; min-height:120px;"><div style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:2.5rem; line-height:1; letter-spacing:-.035em; color:#F0501E;">2026</div><div style="margin-top:8px; font-size:.98rem; color:#4E4740;">Südwestfalenaward</div></div>
       </div>
     </div>
   </section>
@@ -302,6 +294,7 @@
           <div style="display:inline-flex; align-items:center; gap:9px; padding:8px 15px; border-radius:999px; background:rgba(240,80,30,.12); font-size:.9rem; font-weight:600; color:#C93C12; margin-bottom:22px;">
             <span style="width:7px; height:7px; border-radius:50%; background:#F0501E; animation:pulseDot 2.2s ease-in-out infinite;"></span> Coming Soon
           </div>
+          <img src="assets/icon-kamera.png" alt="" style="width:40px; height:40px; margin-bottom:16px; display:block;">
           <h2 style="margin:0 0 18px; font-size:clamp(1.8rem,4vw,2.9rem); line-height:1.04; letter-spacing:-.03em;">Social Selling Coaching</h2>
           <p style="margin:0 0 24px; max-width:42ch; font-size:1.08rem; line-height:1.68; color:#4E4740;">Live Selling auf TikTok und Temu, aufgebaut wie ein Vertrieb: Kanal, Ablauf, Moderation, Angebot. Alles, was ich sonst im Projekt mache, damit dein Team es selbst kann.</p>
           <form style="display:flex; flex-wrap:wrap; gap:10px; max-width:520px;">
@@ -365,7 +358,7 @@
     <div style="max-width:820px; margin:0 auto; padding:clamp(84px,11vw,160px) 22px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:24px;">
       <h2 data-reveal style="margin:0; font-size:clamp(2.2rem,5.6vw,4.2rem); line-height:1; letter-spacing:-.035em; text-wrap:balance;">Dein Markt soll dich kennen, bevor du anrufst.</h2>
       <p data-reveal style="margin:0; max-width:36ch; font-size:clamp(1.1rem,1.8vw,1.35rem); line-height:1.5; color:rgba(23,20,15,.86);">Genau das bauen wir zusammen auf.</p>
-      <a href="#gespraech" data-booking data-magnet data-reveal style="display:inline-flex; align-items:center; justify-content:center; min-height:62px; padding:19px 42px; border-radius:999px; background:#17140F; color:#FBF8F4; font-size:1.1rem; font-weight:600; margin-top:6px; transition:transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease;">Jetzt sichtbar werden!</a>
+      <a href="#gespraech" data-booking data-specular data-line="#FFFFFF" data-base="#6B5A50" data-magnet data-reveal style="position:relative; display:inline-flex; align-items:center; justify-content:center; min-height:62px; padding:19px 42px; border-radius:999px; background:#17140F; color:#FBF8F4; font-size:1.1rem; font-weight:600; margin-top:6px; transition:transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease;"><span data-specular-fx style="position:absolute; inset:-20px; pointer-events:none; z-index:1;"></span><span style="position:relative; z-index:2;">Jetzt sichtbar werden!</span></a>
       <div data-reveal style="font-size:.98rem; font-weight:500; color:rgba(23,20,15,.82);">Kostenlos und unverbindlich · 30 Minuten · persönlich mit Fatmir</div>
     </div>
   </section>
@@ -373,7 +366,7 @@
   <footer style="background:#17140F; color:#FBF8F4;">
     <div style="max-width:1220px; margin:0 auto; padding:clamp(56px,7vw,92px) 22px clamp(26px,3vw,38px); display:grid; grid-template-columns:1fr; gap:clamp(30px,4vw,56px);" data-cols3>
       <div>
-        <img src="assets/logo-white.png" alt="Fatmir Adzaj" style="height:42px; width:auto; display:block; margin-bottom:20px;">
+        <img src="assets/logo-white.png" alt="Fatmir Adzaj" style="height:70px; width:auto; display:block; margin-bottom:22px;">
         <p style="margin:0; max-width:30ch; font-size:1rem; line-height:1.7; color:rgba(251,248,244,.6);">Consulting und Personal Branding für Unternehmer, die sichtbar werden wollen.</p>
       </div>
       <div style="display:flex; flex-direction:column; gap:13px; font-size:1rem;">
@@ -400,22 +393,38 @@
 </div>
 
 <script>
-(function () {
-  var doc = document;
-  var FAQ_SINGLE_OPEN = true;
-  var MARQUEE_SECONDS = 46;
+class DCLogic {
+  constructor(props) { this.props = props; }
+}
 
-  function toggleFaq(e) {
-    var btn = e.currentTarget;
-    var item = btn.parentElement;
-    var panel = item.querySelector('[data-faq-panel]');
-    var icon = btn.querySelector('[data-faq-icon]');
-    var open = panel.style.gridTemplateRows === '1fr';
-    var list = btn.closest('[data-faq]');
-    if (FAQ_SINGLE_OPEN) {
-      list.querySelectorAll('[data-faq-panel]').forEach(function (p) { p.style.gridTemplateRows = '0fr'; });
-      list.querySelectorAll('[data-faq-icon]').forEach(function (ic) { ic.style.transform = 'none'; });
-      list.querySelectorAll('button[aria-expanded]').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showKurs: this.props.showKurs ?? true,
+      toggleFaq: (e) => this.toggleFaq(e),
+      dismissMobileCta: () => this.hideBar(true),
+      joinWaitlist: (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const input = form.querySelector('[data-waitlist]');
+        const msg = form.querySelector('[data-waitlist-msg]');
+        if (msg) msg.textContent = 'Danke, du stehst auf der Warteliste. Fatmir meldet sich vor dem Start.';
+        if (input) input.value = '';
+      }
+    };
+  }
+
+  toggleFaq(e) {
+    const btn = e.currentTarget;
+    const item = btn.parentElement;
+    const panel = item.querySelector('[data-faq-panel]');
+    const icon = btn.querySelector('[data-faq-icon]');
+    const open = panel.style.gridTemplateRows === '1fr';
+    const list = btn.closest('[data-faq]');
+    if (this.props.faqSingleOpen !== false) {
+      list.querySelectorAll('[data-faq-panel]').forEach(p => { p.style.gridTemplateRows = '0fr'; });
+      list.querySelectorAll('[data-faq-icon]').forEach(ic => { ic.style.transform = 'none'; });
+      list.querySelectorAll('button[aria-expanded]').forEach(b => { b.setAttribute('aria-expanded', 'false'); });
     } else if (open) {
       panel.style.gridTemplateRows = '0fr';
       if (icon) icon.style.transform = 'none';
@@ -426,128 +435,392 @@
     }
     btn.setAttribute('aria-expanded', open ? 'false' : 'true');
   }
-  doc.querySelectorAll('[data-faq] button[aria-expanded]').forEach(function (b) {
-    b.addEventListener('click', toggleFaq);
-  });
 
-  var form = doc.querySelector('form');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var input = form.querySelector('[data-waitlist]');
-      var msg = form.querySelector('[data-waitlist-msg]');
-      if (msg) msg.textContent = 'Danke, du stehst auf der Warteliste. Fatmir meldet sich vor dem Start.';
-      if (input) input.value = '';
-    });
+  hideBar(force) {
+    const bar = this._bar;
+    if (!bar) return;
+    if (force) this._dismissed = true;
+    bar.style.transform = 'translateY(120%)';
   }
 
-  var bar = doc.querySelector('[data-mobile-cta]');
-  var dismissed = false;
-  var close = bar && bar.querySelector('button');
-  if (close) {
-    close.addEventListener('click', function () {
-      dismissed = true;
-      bar.style.transform = 'translateY(120%)';
-    });
-  }
 
-  var reveals = Array.prototype.slice.call(doc.querySelectorAll('[data-reveal]')).filter(function (el) {
-    return !el.closest('[data-hero]');
-  });
-  var vh = window.innerHeight;
-  reveals.forEach(function (el) {
-    if (el.getBoundingClientRect().top > vh * 0.9) el.style.opacity = '0';
-  });
-  var ro = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en) {
-      if (!en.isIntersecting) return;
-      var el = en.target;
-      var sibs = Array.prototype.slice.call(el.parentElement ? el.parentElement.children : []).filter(function (c) {
-        return c.hasAttribute && c.hasAttribute('data-reveal');
+  initSpiral(root) {
+    const cards = Array.from(root.querySelectorAll('[data-spiral-item]'));
+    if (!cards.length) return;
+    const speed = this.props.spiralSpeed ?? 0.55;
+    const radius = 170, cardW = 136, cardH = 96, vSpacing = 62, perspective = 1000;
+    const cardsPerTurn = 7, centerScale = 1.18, edgeFade = 0.3, edgeBlur = 6;
+    const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
+    const mod = (v, d) => ((v % d) + d) % d;
+    const smooth = (a, b, v) => { const x = clamp((v - a) / ((b - a) || 1), 0, 1); return x * x * (3 - 2 * x); };
+
+    let progress = 0, target = 0, autoSpeed = 0;
+    let hovered = false, visible = true, dragging = false, lastY = 0;
+    let bounds = root.getBoundingClientRect();
+    let lastScrollY = window.scrollY;
+    let prev = performance.now();
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const ro = new ResizeObserver(() => { bounds = root.getBoundingClientRect(); });
+    ro.observe(root);
+    const io = new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; }, { threshold: 0.02 });
+    io.observe(root);
+    this._observers.push(ro, io);
+
+    const onScroll = () => {
+      const y = window.scrollY, d = y - lastScrollY;
+      lastScrollY = y;
+      if (!visible || d === 0) return;
+      target += clamp((d * (speed / 0.55)) / Math.max(vSpacing * 2, 1), -1.5, 1.5);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    this._cleanups.push(() => window.removeEventListener('scroll', onScroll));
+
+    root.addEventListener('mouseenter', () => { hovered = true; });
+    root.addEventListener('mouseleave', () => { hovered = false; });
+    root.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
+      dragging = true; lastY = e.clientY; target = progress;
+      root.setPointerCapture(e.pointerId);
+      root.style.cursor = 'grabbing';
+    });
+    root.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const d = e.clientY - lastY;
+      lastY = e.clientY;
+      target -= d / Math.max(vSpacing, 1);
+    });
+    const stopDrag = (e) => {
+      if (!dragging) return;
+      dragging = false;
+      if (root.hasPointerCapture(e.pointerId)) root.releasePointerCapture(e.pointerId);
+      root.style.cursor = 'grab';
+    };
+    root.addEventListener('pointerup', stopDrag);
+    root.addEventListener('pointercancel', stopDrag);
+
+    const frame = (time) => {
+      const dt = Math.min((time - prev) / 1000, 0.05);
+      prev = time;
+      const paused = dragging || hovered;
+      const want = visible && !reduced.matches && !paused ? speed : 0;
+      autoSpeed += (want - autoSpeed) * (1 - Math.exp(-dt * 7));
+      target += autoSpeed * dt;
+      progress += (target - progress) * (1 - Math.exp(-dt * (dragging ? 22 : 11)));
+
+      const count = cards.length, half = count / 2;
+      const width = Math.max(bounds.width, 1), height = Math.max(bounds.height, 1);
+      const fit = Math.min(1, width / (cardW * 2.8), height / (cardH * 2.35));
+      const responsiveRadius = Math.min(radius, Math.max(72, width * 0.36)) * fit;
+      const fadeStart = clamp(1 - edgeFade, 0, 0.98);
+
+      cards.forEach((card, index) => {
+        let offset = index - progress;
+        offset = mod(offset + half, count) - half;
+        const edge = Math.min(Math.abs(offset) / Math.max(half, 1), 1);
+        const opacity = 1 - smooth(fadeStart, 1, edge);
+        const focus = 1 - Math.min(Math.abs(offset) / Math.max(cardsPerTurn * 0.65, 1), 1);
+        const scale = (1 + (centerScale - 1) * focus) * fit;
+        const angle = offset * (360 / cardsPerTurn);
+        const rad = (angle * Math.PI) / 180;
+        const x = Math.sin(rad) * responsiveRadius;
+        const z = Math.cos(rad) * responsiveRadius;
+        const depthScale = clamp(perspective / Math.max(perspective - z, 1), 0.72, 1.45);
+        const depth = (z / Math.max(responsiveRadius, 1) + 1) / 2;
+        const blur = edgeBlur * smooth(0.35, 1, edge);
+        card.style.transform = 'translate(-50%, -50%) translate3d(' + x.toFixed(2) + 'px, ' + (offset * vSpacing * fit).toFixed(2) + 'px, 0) scale(' + (scale * depthScale).toFixed(3) + ')';
+        card.style.opacity = opacity.toFixed(3);
+        card.style.filter = blur > 0.01 ? 'blur(' + blur.toFixed(2) + 'px)' : 'none';
+        card.style.zIndex = String(Math.round(depth * 100000) + index);
+        card.style.pointerEvents = opacity > 0.25 ? 'auto' : 'none';
       });
-      var idx = Math.max(0, sibs.indexOf(el));
-      el.style.animation = 'rise .75s cubic-bezier(.22,.9,.3,1) ' + (idx * 0.08) + 's both';
-      ro.unobserve(el);
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-  reveals.forEach(function (el) { ro.observe(el); });
 
-  doc.querySelectorAll('[data-hero] [data-reveal]').forEach(function (el, i) {
-    el.style.opacity = '0';
-    el.style.animation = 'rise .85s cubic-bezier(.22,.9,.3,1) ' + (0.15 + i * 0.1) + 's both';
-  });
-
-  var nav = doc.querySelector('[data-nav]');
-  var hero = doc.querySelector('[data-hero]');
-  function setNav(solid) {
-    if (!nav) return;
-    nav.style.background = solid ? 'rgba(251,248,244,.86)' : 'transparent';
-    nav.style.borderColor = solid ? 'rgba(23,20,15,.1)' : 'transparent';
-    nav.style.boxShadow = solid ? '0 10px 36px rgba(23,20,15,.08)' : 'none';
-    nav.style.backdropFilter = solid ? 'blur(14px)' : 'none';
+      this._rafs.push(requestAnimationFrame(frame));
+    };
+    this._rafs.push(requestAnimationFrame(frame));
   }
-  if (hero) {
-    var no = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        var past = en.intersectionRatio < 0.2;
-        setNav(past);
-        if (bar && !dismissed && window.innerWidth < 768) {
-          bar.style.display = 'flex';
-          bar.style.transform = past ? 'translateY(0)' : 'translateY(120%)';
-        }
+
+  initSpecular(el) {
+    const fx = el.querySelector('[data-specular-fx]');
+    if (!fx) return;
+    const canvas = document.createElement('canvas');
+    canvas.style.display = 'block';
+    let gl = null;
+    try {
+      gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: true });
+    } catch (err) { gl = null; }
+    if (!gl) return;
+
+    const VERT = '#version 300 es\nin vec2 position;\nvoid main() { gl_Position = vec4(position, 0.0, 1.0); }\n';
+    const FRAG = [
+      '#version 300 es',
+      'precision highp float;',
+      'uniform vec2 uCenter; uniform vec2 uHalfSize; uniform float uRadius; uniform float uAngle;',
+      'uniform float uPx; uniform vec3 uLineColor; uniform vec3 uBaseColor; uniform float uIntensity;',
+      'uniform float uShineSize; uniform float uShineFade; uniform float uThickness; uniform float uBaseWidth;',
+      'out vec4 fragColor;',
+      'float sdRoundedRect(vec2 p, vec2 b, float r) {',
+      '  vec2 q = abs(p) - b + r;',
+      '  return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;',
+      '}',
+      'float gaussianLine(float d, float sigma) {',
+      '  float x = d / (sigma + 1e-6);',
+      '  float k = mix(1.0, 1.6, smoothstep(0.0, 1.5, x));',
+      '  return exp(-k * x * x);',
+      '}',
+      'void main() {',
+      '  vec2 p = gl_FragCoord.xy - uCenter;',
+      '  float d = sdRoundedRect(p, uHalfSize, uRadius);',
+      '  vec2 L = vec2(cos(uAngle), sin(uAngle));',
+      '  float base = (1.0 - smoothstep(0.0, uBaseWidth, abs(d))) * 0.45;',
+      '  vec2 nEll = normalize(p / (uHalfSize * uHalfSize) + 1e-6);',
+      '  float phi = acos(clamp(abs(dot(nEll, L)), 0.0, 1.0));',
+      '  float rim = 1.0 - smoothstep(uShineSize - uShineFade, uShineSize + uShineFade + 1e-4, phi);',
+      '  float line = gaussianLine(d, uThickness);',
+      '  float edgeClamp = 1.0 - smoothstep(0.5 * uPx, 3.0 * uPx, abs(d));',
+      '  float hi = line * rim * edgeClamp * uIntensity;',
+      '  vec3 col = uBaseColor * base + uLineColor * hi;',
+      '  float a = clamp(base + hi, 0.0, 1.0);',
+      '  fragColor = vec4(col, a);',
+      '}'
+    ].join('\n');
+
+    const compile = (type, src) => {
+      const sh = gl.createShader(type);
+      gl.shaderSource(sh, src);
+      gl.compileShader(sh);
+      return gl.getShaderParameter(sh, gl.COMPILE_STATUS) ? sh : null;
+    };
+    const vs = compile(gl.VERTEX_SHADER, VERT);
+    const fs = compile(gl.FRAGMENT_SHADER, FRAG);
+    if (!vs || !fs) return;
+    const prog = gl.createProgram();
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.bindAttribLocation(prog, 0, 'position');
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(0);
+    gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+    gl.clearColor(0, 0, 0, 0);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    fx.appendChild(canvas);
+
+    const u = (name) => gl.getUniformLocation(prog, name);
+    const uni = {
+      center: u('uCenter'), half: u('uHalfSize'), radius: u('uRadius'), angle: u('uAngle'),
+      px: u('uPx'), line: u('uLineColor'), base: u('uBaseColor'), intensity: u('uIntensity'),
+      shineSize: u('uShineSize'), shineFade: u('uShineFade'), thickness: u('uThickness'), baseWidth: u('uBaseWidth')
+    };
+    const hex = (value) => {
+      const h = (value || '#ffffff').replace('#', '');
+      const n = parseInt(h.length === 3 ? h.split('').map(c => c + c).join('') : h, 16);
+      return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+    };
+    const lineColor = hex(el.getAttribute('data-line') || '#ffffff');
+    const baseColor = hex(el.getAttribute('data-base') || '#525252');
+
+    const PAD = 20;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let size = { w: 1, h: 1 };
+    const resize = () => {
+      const rect = el.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      size = { w: rect.width, h: rect.height };
+      const cw = Math.round((rect.width + PAD * 2) * dpr);
+      const ch = Math.round((rect.height + PAD * 2) * dpr);
+      canvas.width = cw; canvas.height = ch;
+      canvas.style.width = (rect.width + PAD * 2) + 'px';
+      canvas.style.height = (rect.height + PAD * 2) + 'px';
+      gl.viewport(0, 0, cw, ch);
+      gl.uniform2f(uni.center, (PAD + rect.width / 2) * dpr, (PAD + rect.height / 2) * dpr);
+      gl.uniform2f(uni.half, (rect.width / 2) * dpr, (rect.height / 2) * dpr);
+    };
+    const ro = new ResizeObserver(resize);
+    ro.observe(el);
+    this._observers.push(ro);
+    resize();
+
+    let pointerAngle = null, proximityT = 0, angle = 2.4, idleAngle = 2.4, bright = 0;
+    let last = performance.now();
+    const proximity = 250;
+    const onMove = (e) => {
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+      const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
+      const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
+      const dist = Math.hypot(dx, dy);
+      if (dist === 0) {
+        const nx = (e.clientX - cx) / (rect.width / 2);
+        const ny = (cy - e.clientY) / (rect.height / 2);
+        pointerAngle = Math.atan2(2 / rect.height, -2 / rect.width) + nx * 0.3 + ny * 0.15;
+      } else {
+        pointerAngle = Math.atan2(cy - e.clientY, e.clientX - cx);
+      }
+      const t = Math.max(0, 1 - dist / proximity);
+      proximityT = t * t * (3 - 2 * t);
+    };
+    window.addEventListener('pointermove', onMove);
+    this._cleanups.push(() => {
+      window.removeEventListener('pointermove', onMove);
+      const lose = gl.getExtension('WEBGL_lose_context');
+      if (lose) lose.loseContext();
+    });
+
+    const draw = (now) => {
+      const dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+      idleAngle += 0.35 * dt;
+      const steer = pointerAngle !== null && proximityT > 0;
+      const targetAngle = steer ? pointerAngle : idleAngle;
+      const diff = ((targetAngle - angle + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
+      angle += diff * (1 - Math.exp(-dt * 7));
+      bright += (proximityT - bright) * (1 - Math.exp(-dt * 8));
+
+      gl.useProgram(prog);
+      gl.uniform1f(uni.angle, angle);
+      gl.uniform1f(uni.radius, Math.min(999, Math.min(size.w, size.h) / 2) * dpr);
+      gl.uniform1f(uni.px, dpr);
+      gl.uniform3fv(uni.line, lineColor);
+      gl.uniform3fv(uni.base, baseColor);
+      gl.uniform1f(uni.intensity, bright);
+      gl.uniform1f(uni.shineSize, (10 * Math.PI) / 180);
+      gl.uniform1f(uni.shineFade, (40 * Math.PI) / 180);
+      gl.uniform1f(uni.thickness, 1 * dpr);
+      gl.uniform1f(uni.baseWidth, dpr);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      this._rafs.push(requestAnimationFrame(draw));
+    };
+    this._rafs.push(requestAnimationFrame(draw));
+  }
+
+  componentDidMount() {
+    const doc = document;
+    this._observers = [];
+    this._cleanups = [];
+    this._rafs = [];
+
+    const reveals = Array.from(doc.querySelectorAll('[data-reveal]')).filter(el => !el.closest('[data-hero]'));
+    const vh = window.innerHeight;
+    reveals.forEach(el => { if (el.getBoundingClientRect().top > vh * 0.9) el.style.opacity = '0'; });
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        const sibs = Array.from(el.parentElement ? el.parentElement.children : []).filter(c => c.hasAttribute && c.hasAttribute('data-reveal'));
+        const idx = Math.max(0, sibs.indexOf(el));
+        el.style.animation = 'rise .75s cubic-bezier(.22,.9,.3,1) ' + (idx * 0.08) + 's both';
+        ro.unobserve(el);
       });
-    }, { threshold: [0, 0.2, 0.6] });
-    no.observe(hero);
-  }
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(el => ro.observe(el));
+    this._observers.push(ro);
 
-  function applyResponsive() {
-    var w = window.innerWidth;
-    var wide = w >= 900;
-    doc.querySelectorAll('[data-cols2]').forEach(function (el) {
-      el.style.gridTemplateColumns = wide ? 'repeat(2, minmax(0,1fr))' : '1fr';
+    doc.querySelectorAll('[data-hero] [data-reveal]').forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.animation = 'rise .85s cubic-bezier(.22,.9,.3,1) ' + (0.15 + i * 0.1) + 's both';
     });
-    doc.querySelectorAll('[data-cols3]').forEach(function (el) {
-      el.style.gridTemplateColumns = wide ? 'repeat(3, minmax(0,1fr))' : (w >= 620 ? 'repeat(2, minmax(0,1fr))' : '1fr');
-    });
-    doc.querySelectorAll('[data-cols4]').forEach(function (el) {
-      el.style.gridTemplateColumns = wide ? 'repeat(4, minmax(0,1fr))' : 'repeat(2, minmax(0,1fr))';
-    });
-    var heroWideLayout = w >= 980;
-    var heroGrid = doc.querySelector('[data-hero-grid]');
-    var heroWide = doc.querySelector('[data-hero-wide]');
-    var heroPortrait = doc.querySelector('[data-hero-portrait]');
-    var heroBlob = doc.querySelector('[data-hero-blob]');
-    if (heroGrid) {
-      heroGrid.style.gridTemplateColumns = heroWideLayout ? '1.05fr .95fr' : '1fr';
-      heroGrid.style.position = heroWideLayout ? 'absolute' : 'relative';
-      heroGrid.style.inset = heroWideLayout ? '0' : '';
-      heroGrid.style.paddingTop = heroWideLayout ? '110px' : '132px';
+
+    const nav = doc.querySelector('[data-nav]');
+    const hero = doc.querySelector('[data-hero]');
+    this._bar = doc.querySelector('[data-mobile-cta]');
+    const setNav = (solid) => {
+      if (!nav) return;
+      nav.style.background = solid ? 'rgba(251,248,244,.86)' : 'transparent';
+      nav.style.borderColor = solid ? 'rgba(23,20,15,.1)' : 'transparent';
+      nav.style.boxShadow = solid ? '0 10px 36px rgba(23,20,15,.08)' : 'none';
+      nav.style.backdropFilter = solid ? 'blur(14px)' : 'none';
+    };
+    if (hero) {
+      const no = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          const past = en.intersectionRatio < 0.2;
+          setNav(past);
+          if (this._bar && !this._dismissed && window.innerWidth < 768) {
+            this._bar.style.display = 'flex';
+            this._bar.style.transform = past ? 'translateY(0)' : 'translateY(120%)';
+          }
+        });
+      }, { threshold: [0, 0.2, 0.6] });
+      no.observe(hero);
+      this._observers.push(no);
     }
-    if (heroWide) heroWide.style.display = heroWideLayout ? 'block' : 'none';
-    if (heroPortrait) heroPortrait.style.display = heroWideLayout ? 'none' : 'block';
-    if (heroBlob) heroBlob.style.display = heroWideLayout ? 'none' : 'block';
-    doc.querySelectorAll('[data-flip] > *').forEach(function (el, i) {
-      el.style.order = wide && i === 0 ? '2' : '';
+
+    const applyResponsive = () => {
+      const w = window.innerWidth;
+      const wide = w >= 900;
+      doc.querySelectorAll('[data-cols2]').forEach(el => {
+        el.style.gridTemplateColumns = wide ? 'repeat(2, minmax(0,1fr))' : '1fr';
+      });
+      doc.querySelectorAll('[data-cols3]').forEach(el => {
+        el.style.gridTemplateColumns = wide ? 'repeat(3, minmax(0,1fr))' : (w >= 620 ? 'repeat(2, minmax(0,1fr))' : '1fr');
+      });
+      doc.querySelectorAll('[data-cols4]').forEach(el => {
+        el.style.gridTemplateColumns = wide ? 'repeat(4, minmax(0,1fr))' : 'repeat(2, minmax(0,1fr))';
+      });
+      const splitHero = w >= 980;
+      const heroGrid = doc.querySelector('[data-hero-grid]');
+      const heroPhoto = doc.querySelector('[data-hero-photo]');
+      const heroPortrait = doc.querySelector('[data-hero-portrait]');
+      const heroBlob = doc.querySelector('[data-hero-blob]');
+      if (heroGrid) heroGrid.style.gridTemplateColumns = splitHero ? '.92fr 1.08fr' : '1fr';
+      if (heroPhoto) {
+        heroPhoto.style.display = splitHero ? 'block' : 'none';
+        heroPhoto.style.height = splitHero ? 'min(80dvh, 720px)' : '';
+      }
+      if (heroPortrait) heroPortrait.style.display = splitHero ? 'none' : 'block';
+      if (heroBlob) heroBlob.style.display = splitHero ? 'none' : 'block';
+      doc.querySelectorAll('[data-award]').forEach(el => {
+        el.style.gridColumn = wide ? 'span ' + el.getAttribute('data-span') : '';
+      });
+      const awards = doc.querySelector('[data-awards]');
+      if (awards) awards.style.gridTemplateColumns = wide ? 'repeat(6, minmax(0,1fr))' : 'repeat(2, minmax(0,1fr))';
+      doc.querySelectorAll('[data-flip] > *').forEach((el, i) => {
+        el.style.order = wide && i === 0 ? '2' : '';
+      });
+      const links = doc.querySelector('[data-nav-links]');
+      if (links) links.style.display = w >= 900 ? 'flex' : 'none';
+      if (this._bar && w >= 768) this._bar.style.display = 'none';
+    };
+    applyResponsive();
+    this._onResize = applyResponsive;
+    window.addEventListener('resize', applyResponsive);
+
+    doc.querySelectorAll('[data-magnet]').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.style.transform = 'scale(1.03) translateY(-1px)'; });
+      el.addEventListener('mouseleave', () => { el.style.transform = 'none'; });
     });
-    var links = doc.querySelector('[data-nav-links]');
-    if (links) links.style.display = w >= 900 ? 'flex' : 'none';
-    if (bar && w >= 768) bar.style.display = 'none';
-  }
-  applyResponsive();
-  window.addEventListener('resize', applyResponsive);
 
-  doc.querySelectorAll('[data-magnet]').forEach(function (el) {
-    el.addEventListener('mouseenter', function () { el.style.transform = 'scale(1.03) translateY(-1px)'; });
-    el.addEventListener('mouseleave', function () { el.style.transform = 'none'; });
+    doc.querySelectorAll('[data-spiral]').forEach(el => this.initSpiral(el));
+    doc.querySelectorAll('[data-specular]').forEach(el => this.initSpecular(el));
+  }
+
+  componentWillUnmount() {
+    (this._observers || []).forEach(o => o.disconnect());
+    (this._cleanups || []).forEach(fn => fn());
+    (this._rafs || []).forEach(id => cancelAnimationFrame(id));
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+  }
+}
+
+(function () {
+  var page = new Component({ showKurs: true, faqSingleOpen: true, spiralSpeed: 0.55 });
+  var vals = page.renderVals();
+  document.querySelectorAll('[data-faq] button[aria-expanded]').forEach(function (b) {
+    b.addEventListener('click', vals.toggleFaq);
   });
-
-  var mq = doc.querySelector('[data-marquee]');
-  if (mq) mq.style.animationDuration = MARQUEE_SECONDS + 's';
-  var wrap = doc.querySelector('[data-marquee-wrap]');
-  if (wrap && mq) {
-    wrap.addEventListener('mouseenter', function () { mq.style.animationPlayState = 'paused'; });
-    wrap.addEventListener('mouseleave', function () { mq.style.animationPlayState = 'running'; });
-  }
+  var form = document.querySelector('form');
+  if (form) form.addEventListener('submit', vals.joinWaitlist);
+  var close = document.querySelector('[data-mobile-cta] button');
+  if (close) close.addEventListener('click', vals.dismissMobileCta);
+  page.componentDidMount();
 })();
 </script>
 </body>
