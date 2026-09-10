@@ -2,7 +2,7 @@
 .env.*
 gen/
 uploads/
-assets/
+/assets/
 tmp-logos/
 live-v2/
 *.raw
