@@ -95,7 +95,7 @@ def subpage(html):
     """Nav/Footer fuer eine Seite eine Ebene tiefer umbiegen."""
     html = html.replace('src="assets/', 'src="../assets/')
     html = html.replace('href="#', 'href="../#')
-    html = html.replace('href="kontakt/"', 'href="./"')
+    html = html.replace('href="kontakt/"', 'href="#termin"')
     return html
 
 
@@ -107,7 +107,6 @@ k_nav = k_nav.replace(
     " box-shadow:0 10px 36px rgba(20,24,26,.08); backdrop-filter:blur(14px);")
 k_nav = k_nav.replace("color:#FFFFFF; text-shadow:0 1px 12px rgba(20,24,26,.35);", "color:#4B534F;")
 k_nav = k_nav.replace('href="../#top"', 'href="../"')
-k_nav = k_nav.replace('href="../#gespraech"', 'href="#termin"')
 
 k_footer = subpage(footer_html)
 
