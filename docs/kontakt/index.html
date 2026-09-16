@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt — Fatmir Adzaj</title>
+<meta name="description" content="Termin mit Fatmir Adzaj buchen. Kostenloses Erstgespraech zu Sichtbarkeit, Performance Marketing und Live Shopping.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Termin mit Fatmir Adzaj buchen">
+<meta property="og:description" content="Termin mit Fatmir Adzaj buchen. Kostenloses Erstgespraech zu Sichtbarkeit, Performance Marketing und Live Shopping.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F5F2EC">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin:0; background:#F5F2EC; color:#14181A; font-family:"Karla", Helvetica, Arial, sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  * { box-sizing:border-box; }
+  h1, h2, h3 { font-family:"Bricolage Grotesque", "Karla", Helvetica, sans-serif; font-weight:700; }
+  a { color:#A02121; text-decoration:none; }
+  a:hover { color:#14181A; }
+  ::selection { background:rgba(195,40,40,.18); }
+  :focus-visible { outline:2px solid #C32828; outline-offset:3px; }
+  @keyframes rise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+  @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  @keyframes pulseDot { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+  [data-spotlight] { position:relative; --mouse-x:50%; --mouse-y:50%; }
+  [data-spotlight]::before { content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; transition:opacity .5s ease; background:radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(195,40,40,.10), transparent 72%); }
+  [data-spotlight]:hover::before, [data-spotlight]:focus-within::before { opacity:1; }
+  [data-sketch] path { stroke-dasharray:var(--len,800); stroke-dashoffset:var(--len,800); }
+  [data-sketch].is-drawn path { animation:sketch 1.1s cubic-bezier(.22,.9,.3,1) forwards; }
+  @keyframes sketch { to { stroke-dashoffset:0; } }
+  @media print { body { background:#fff; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    *, *::before, *::after { animation-duration:.01ms !important; animation-delay:0s !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  }
+</style>
+</head>
+<body>
+<div style="position:relative; max-width:100%; overflow:hidden; background:#F5F2EC; display:flex; flex-direction:column; min-height:100dvh;">
+
+<nav data-nav style="position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:50; width:calc(100% - 24px); max-width:1120px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:9px 9px 9px 20px; border-radius:999px; border:1px solid rgba(20,24,26,.1); background:rgba(245,242,236,.86); box-shadow:0 10px 36px rgba(20,24,26,.08); backdrop-filter:blur(14px); transition:background .45s ease, border-color .45s ease, box-shadow .45s ease, backdrop-filter .45s ease;">
+    <a href="../" style="display:flex; align-items:center; min-height:44px;">
+      <img src="../assets/logo-ink.png" alt="Fatmir Adzaj" style="height:36px; width:auto; display:block;">
+    </a>
+    <div data-nav-links style="display:none; gap:30px; align-items:center; font-size:15px; font-weight:600; color:#4B534F; transition:color .45s ease, text-shadow .45s ease;">
+      <a href="../#hebel" style="color:inherit;">Leistungen</a>
+      <a href="../#stimmen" style="color:inherit;">Stimmen</a>
+      <a href="../#fatmir" style="color:inherit;">Über Fatmir</a>
+      <a href="../#coaching" style="color:inherit;">Coaching</a>
+    </div>
+    <a href="#termin" data-magnet style="display:inline-flex; align-items:center; min-height:44px; padding:12px 22px; border-radius:999px; background:#C32828; color:#F5F2EC; font-size:15px; font-weight:600; white-space:nowrap; transition:transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease;">Jetzt sichtbar werden!</a>
+  </nav>
+
+  <main id="termin" style="flex:1; padding:clamp(122px,14vw,160px) 22px clamp(56px,7vw,96px);">
+    <div style="max-width:960px; margin:0 auto;">
+      <h1 style="margin:0; font-size:clamp(2.1rem,5.4vw,3.4rem); line-height:1.12; letter-spacing:-.02em; color:#14181A;">Termin mit Fatmir buchen</h1>
+      <p style="margin:18px 0 0; max-width:52ch; font-size:clamp(1.05rem,1.5vw,1.2rem); line-height:1.65; color:#4B534F;">Such dir einen freien Platz im Kalender aus. Im Gespräch klären wir, wo du gerade stehst und welcher Hebel bei dir am schnellsten Sichtbarkeit bringt.</p>
+
+      <!-- Calendly: hier das Inline Widget einsetzen.
+           1. Im <head> oben ergänzen:
+              <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
+           2. Den folgenden Platzhalter ersetzen durch:
+              <div class="calendly-inline-widget" data-url="https://calendly.com/DEIN-LINK"
+                   style="min-width:320px; height:760px;"></div>
+              <script src="https://assets.calendly.com/assets/external/widget.js" async></script> -->
+      <div data-calendly style="margin-top:clamp(30px,4vw,48px); min-height:640px; display:flex; align-items:center; justify-content:center; padding:32px; border-radius:22px; border:1px solid rgba(20,24,26,.1); background:#FDFBF6; box-shadow:0 18px 48px rgba(20,24,26,.06);">
+        <p style="margin:0; max-width:34ch; text-align:center; font-size:1.05rem; line-height:1.6; color:#767D78;">Hier erscheint der Kalender von Calendly, sobald der Terminlink hinterlegt ist.</p>
+      </div>
+    </div>
+  </main>
+
+<footer style="background:#14181A; color:#F5F2EC;">
+    <div style="max-width:1220px; margin:0 auto; padding:clamp(56px,7vw,92px) 22px clamp(26px,3vw,38px); display:grid; grid-template-columns:1fr; gap:clamp(30px,4vw,56px);" data-cols3>
+      <div>
+        <p style="margin:0; max-width:30ch; font-size:1rem; line-height:1.7; color:rgba(245,242,236,.6);">Consulting und Personal Branding für Unternehmer, die sichtbar werden wollen.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:13px; font-size:1rem;">
+        <div style="font-size:.9rem; font-weight:600; color:rgba(245,242,236,.42); margin-bottom:4px;">Seite</div>
+        <a href="../#hebel" style="color:rgba(245,242,236,.8);">Leistungen</a>
+        <a href="../#stimmen" style="color:rgba(245,242,236,.8);">Stimmen</a>
+        <a href="../#fatmir" style="color:rgba(245,242,236,.8);">Über Fatmir</a>
+        <a href="../#coaching" style="color:rgba(245,242,236,.8);">Coaching</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:13px; font-size:1rem;">
+        <div style="font-size:.9rem; font-weight:600; color:rgba(245,242,236,.42); margin-bottom:4px;">Kontakt</div>
+        <a href="./" style="color:rgba(245,242,236,.8);">Termin buchen</a>
+        <a href="https://fatmir.de/impressum/" style="color:rgba(245,242,236,.8);">Impressum</a>
+        <a href="https://fatmir.de/datenschutz/" style="color:rgba(245,242,236,.8);">Datenschutz</a>
+      </div>
+    </div>
+    <div style="max-width:1220px; margin:0 auto; padding:8px 22px 0;">
+      <img src="../assets/logo-white.png" alt="Fatmir Adzaj" style="display:block; width:100%; max-width:900px; height:auto; opacity:.95;">
+    </div>
+    <div style="max-width:1220px; margin:0 auto; padding:14px 22px clamp(88px,10vw,40px); font-size:.9rem; color:rgba(245,242,236,.42);">© 2026 Fatmir Adzaj</div>
+  </footer>
+
+</div>
+<script>
+(function () {
+  var apply = function () {
+    var w = window.innerWidth;
+    document.querySelectorAll('[data-cols3]').forEach(function (el) {
+      el.style.gridTemplateColumns = w >= 900 ? 'repeat(3, minmax(0,1fr))'
+        : (w >= 620 ? 'repeat(2, minmax(0,1fr))' : '1fr');
+    });
+    var links = document.querySelector('[data-nav-links]');
+    if (links) links.style.display = w >= 900 ? 'flex' : 'none';
+  };
+  apply();
+  window.addEventListener('resize', apply);
+  document.querySelectorAll('[data-magnet]').forEach(function (el) {
+    el.addEventListener('mouseenter', function () { el.style.transform = 'scale(1.03) translateY(-1px)'; });
+    el.addEventListener('mouseleave', function () { el.style.transform = 'none'; });
+  });
+})();
+</script>
+</body>
+</html>
