@@ -66,9 +66,9 @@ page = f"""<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fatmir Adzaj — Sichtbar werden. Und verkaufen.</title>
+<title>Fatmir Adzaj — Wer dich nicht kennt, kauft woanders.</title>
 <meta name="description" content="{DESC}">
-<meta property="og:title" content="Fatmir Adzaj — Sichtbar werden. Und verkaufen.">
+<meta property="og:title" content="Fatmir Adzaj — Wer dich nicht kennt, kauft woanders.">
 <meta property="og:description" content="{DESC}">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/fatmir-hero-wide.webp">
