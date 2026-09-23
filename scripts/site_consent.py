@@ -151,7 +151,9 @@ CALENDLY_JS = '''
     loaded = true;
     gate.style.display = 'none';
     mount.style.display = 'block';
-    mount.innerHTML = '<div class="calendly-inline-widget" data-url="@CALENDLY@" style="min-width:320px; height:760px;"></div>';
+    var h = window.innerWidth < 720 ? 1320 : (window.innerWidth < 1000 ? 1150 : 1080);
+    mount.innerHTML = '<div class="calendly-inline-widget" data-url="@CALENDLY@" data-resize="true" ' +
+      'style="min-width:280px; width:100%; height:' + h + 'px;"></div>';
     var css = document.createElement('link');
     css.rel = 'stylesheet';
     css.href = 'https://assets.calendly.com/assets/external/widget.css';

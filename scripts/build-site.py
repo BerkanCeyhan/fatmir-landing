@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "Main.dc.html"
 OUT = ROOT / "docs"
 ASSETS = OUT / "assets"
-CALENDLY = "https://calendly.com/team-fatmir?background_color=fffdfd&text_color=c23939&primary_color=96b7e7"
+CALENDLY = "https://calendly.com/team-fatmir"
 
 src = SRC.read_text(encoding="utf-8")
 
@@ -103,6 +103,7 @@ def head(title, description, canonical, robots="index, follow", depth=0, extra="
 <meta name="description" content="{description}">
 <meta name="robots" content="{robots}">
 <meta name="author" content="Fatmir Adzaj">
+<meta name="google-site-verification" content="qk1YUyTHfSH1Y-FbTKsXqTsB9fAA26CSWS--cHBqVJo">
 <link rel="canonical" href="{canonical}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Fatmir Adzaj">

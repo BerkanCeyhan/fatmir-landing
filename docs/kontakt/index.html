@@ -7,6 +7,7 @@
 <meta name="description" content="30 Minuten, kostenlos, persönlich mit Fatmir. Kein Callcenter, kein Fragebogen. Such dir einen Platz im Kalender und wir schauen, welcher Hebel bei dir zieht.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Fatmir Adzaj">
+<meta name="google-site-verification" content="qk1YUyTHfSH1Y-FbTKsXqTsB9fAA26CSWS--cHBqVJo">
 <link rel="canonical" href="https://fatmir.de/kontakt/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Fatmir Adzaj">
@@ -210,8 +211,8 @@
     <a "#termin" data-magnet style="display:inline-flex; align-items:center; min-height:44px; padding:12px 22px; border-radius:999px; background:#C32828; color:#F5F2EC; font-size:15px; font-weight:600; white-space:nowrap; transition:transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease;">Jetzt sichtbar werden!</a>
   </nav>
 
-  <main id="termin" style="flex:1; padding:clamp(122px,14vw,160px) 22px clamp(56px,7vw,96px);">
-    <div style="max-width:960px; margin:0 auto;">
+  <main id="termin" style="flex:1; padding:clamp(122px,14vw,160px) clamp(12px,3vw,22px) clamp(56px,7vw,96px);">
+    <div style="max-width:1000px; margin:0 auto;">
       <h1 style="margin:0; font-size:clamp(2.1rem,5.4vw,3.4rem); line-height:1.12; letter-spacing:-.02em; color:#14181A;">Termin mit Fatmir buchen</h1>
       <p style="margin:18px 0 0; max-width:52ch; font-size:clamp(1.05rem,1.5vw,1.2rem); line-height:1.65; color:#4B534F;">Such dir einen freien Platz im Kalender aus. Im Gespräch klären wir, wo du gerade stehst und welcher Hebel bei dir am schnellsten Sichtbarkeit bringt.</p>
       <div style="margin-top:18px; display:flex; flex-wrap:wrap; gap:8px 20px; font-size:.98rem; font-weight:600; color:#4B534F;">
@@ -220,13 +221,13 @@
         <span>persönlich mit Fatmir</span>
       </div>
 
-      <div data-calendly style="margin-top:clamp(30px,4vw,48px); border-radius:22px; border:1px solid rgba(20,24,26,.1); background:#FDFBF6; box-shadow:0 18px 48px rgba(20,24,26,.06); overflow:hidden;">
+      <div data-calendly style="margin-top:clamp(30px,4vw,48px); border-radius:22px; border:1px solid rgba(20,24,26,.1); background:#FDFBF6; box-shadow:0 18px 48px rgba(20,24,26,.06); overflow:visible;">
         <div data-calendly-gate style="min-height:420px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; padding:clamp(28px,5vw,56px); text-align:center;">
           <p style="margin:0; max-width:46ch; font-size:1.05rem; line-height:1.65; color:#3A413D;">Der Kalender kommt von Calendly. Beim Laden erfährt Calendly deine IP Adresse und setzt eigene Cookies. Deshalb fragen wir vorher.</p>
           <button type="button" data-calendly-load style="min-height:54px; padding:16px 30px; border-radius:999px; border:none; background:#C32828; color:#F5F2EC; font-family:inherit; font-size:1.02rem; font-weight:600; cursor:pointer;">Kalender laden und Termin wählen</button>
           <p style="margin:0; font-size:.9rem; line-height:1.6; color:#767D78;">Kein Kalender nötig? Schreib einfach an <a href="mailto:team@fatmir.de" style="color:#A02121; font-weight:600;">team@fatmir.de</a> oder ruf an: <a href="tel:+4923313442428" style="color:#A02121; font-weight:600;">02331 3442428</a></p>
         </div>
-        <div data-calendly-mount style="display:none;"></div>
+        <div data-calendly-mount style="display:none; border-radius:22px; overflow:hidden;"></div>
       </div>
     </div>
   </main>
@@ -428,7 +429,9 @@
     loaded = true;
     gate.style.display = 'none';
     mount.style.display = 'block';
-    mount.innerHTML = '<div class="calendly-inline-widget" data-url="https://calendly.com/team-fatmir?background_color=fffdfd&text_color=c23939&primary_color=96b7e7" style="min-width:320px; height:760px;"></div>';
+    var h = window.innerWidth < 720 ? 1320 : (window.innerWidth < 1000 ? 1150 : 1080);
+    mount.innerHTML = '<div class="calendly-inline-widget" data-url="https://calendly.com/team-fatmir" data-resize="true" ' +
+      'style="min-width:280px; width:100%; height:' + h + 'px;"></div>';
     var css = document.createElement('link');
     css.rel = 'stylesheet';
     css.href = 'https://assets.calendly.com/assets/external/widget.css';
