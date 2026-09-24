@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "Main.dc.html"
 OUT = ROOT / "docs"
 ASSETS = OUT / "assets"
-CALENDLY = "https://calendly.com/team-fatmir"
+CALENDLY = "https://calendly.com/team-fatmir/30min?primary_color=c32828"
 
 src = SRC.read_text(encoding="utf-8")
 

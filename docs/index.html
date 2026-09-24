@@ -625,6 +625,9 @@
             <div style="font-size:1.02rem; line-height:1.6; color:#4B534F;"><strong style="font-weight:700; color:#14181A;">Danach kannst du:</strong> eigene Livesendungen machen und darüber verkaufen, ohne mich im Raum.</div>
           </div>
           <form style="display:flex; flex-wrap:wrap; gap:10px; max-width:520px;">
+            <div aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
+              <label>Website<input data-waitlist-hp type="text" tabindex="-1" autocomplete="off" name="website" value=""></label>
+            </div>
             <input data-waitlist type="email" required placeholder="Deine Adresse für die Warteliste" style="flex:1 1 230px; min-height:54px; padding:15px 20px; border-radius:999px; border:1.5px solid rgba(20,24,26,.18); background:#F5F2EC; font-family:inherit; font-size:1rem; color:#14181A;">
             <button type="submit" data-magnet style="min-height:54px; padding:15px 28px; border-radius:999px; border:none; background:#14181A; color:#F5F2EC; font-family:inherit; font-size:1rem; font-weight:600; cursor:pointer; transition:transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease;">Platz vormerken</button>
             <div data-waitlist-msg style="flex:1 1 100%; font-size:.95rem; font-weight:500; color:#A02121; min-height:1.2em;"></div>
@@ -813,12 +816,13 @@ class Component extends DCLogic {
     };
   }
 
-  joinWaitlist(e) {
+  async joinWaitlist(e) {
     e.preventDefault();
     const form = e.currentTarget;
     const input = form.querySelector('[data-waitlist]');
     const msg = form.querySelector('[data-waitlist-msg]');
     const button = form.querySelector('button[type="submit"]');
+    const trap = form.querySelector('[data-waitlist-hp]');
     const mail = (input && input.value || '').trim();
     if (!mail) return;
     if (msg) { msg.style.color = '#6A716C'; msg.textContent = 'Moment, wird eingetragen …'; }
@@ -846,14 +850,34 @@ class Component extends DCLogic {
       }
     };
 
+    let key = '';
+    try { key = await this.signMail(mail.toLowerCase()); } catch (err) { key = ''; }
+
     fetch(this.waitlistUrl(), {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ email: mail, source: 'warteliste-coaching', page: location.pathname })
+      body: JSON.stringify({
+        email: mail,
+        source: 'warteliste-coaching',
+        page: location.pathname,
+        dt: Date.now() - (this._loadedAt || Date.now()),
+        hp: trap ? trap.value : '',
+        k: key
+      })
     })
       .then(r => r.json())
       .then(data => { if (data && data.ok) { done(); } else { failed(); } })
       .catch(failed);
+  }
+
+  // Derselbe Wert entsteht im Skript hinter der Tabelle. Haelt einfache
+  // Skripte fern, die nur die Adresse aus dem Quelltext abschreiben.
+  async signMail(mail) {
+    const day = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    const raw = mail + '|' + day + '|' + 'fatmir-warteliste-2026';
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(raw));
+    return Array.from(new Uint8Array(buf))
+      .map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 16);
   }
 
   waitlistUrl() {
@@ -2105,6 +2129,7 @@ class Component extends DCLogic {
 
     this._bgSinks = {};
     this.initLab();
+    this._loadedAt = Date.now();
     this.mountDefaultBgs();
     doc.querySelectorAll('[data-masked]').forEach(el => this.initMasked(el));
     doc.querySelectorAll('[data-spiral]').forEach(el => this.initSpiral(el));
