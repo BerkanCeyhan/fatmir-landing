@@ -138,30 +138,71 @@ JS = '''
 '''
 
 CALENDLY_JS = '''
-/* Calendly laedt erst nach Einwilligung, vorher steht dort nur der Hinweis. */
+/* Calendly laedt erst nach Einwilligung, vorher steht dort nur der Hinweis.
+   Eingebunden ueber initInlineWidget, nicht ueber die automatische Erkennung:
+   so haengt es nicht davon ab, wann das Skript im Seitenaufbau ankommt.
+   Kommt nach sechs Sekunden kein Rahmen, erscheint ein Link nach draussen. */
 (function () {
+  var URL = '@CALENDLY@';
   var gate = document.querySelector('[data-calendly-gate]');
   var mount = document.querySelector('[data-calendly-mount]');
   var button = document.querySelector('[data-calendly-load]');
   if (!gate || !mount) return;
   var loaded = false;
 
+  function height() {
+    var w = window.innerWidth;
+    return w < 720 ? 1150 : (w < 1000 ? 1000 : 900);
+  }
+
+  function fallback(host) {
+    if (host.querySelector('iframe')) return;
+    host.innerHTML = '<div style="display:flex; flex-direction:column; align-items:center; ' +
+      'justify-content:center; gap:16px; padding:48px 24px; text-align:center;">' +
+      '<p style="margin:0; max-width:40ch; font-size:1.02rem; line-height:1.6; color:#3A413D;">' +
+      'Der Kalender lädt gerade nicht. Du kommst hier direkt zur Buchung.</p>' +
+      '<a href="' + URL + '" target="_blank" rel="noopener" style="display:inline-flex; ' +
+      'align-items:center; min-height:52px; padding:15px 28px; border-radius:999px; ' +
+      'background:#C32828; color:#F5F2EC; font-size:1.02rem; font-weight:600;">' +
+      'Termin bei Calendly wählen</a></div>';
+  }
+
   function load() {
     if (loaded) return;
     loaded = true;
     gate.style.display = 'none';
     mount.style.display = 'block';
-    var h = window.innerWidth < 720 ? 1320 : (window.innerWidth < 1000 ? 1150 : 1080);
-    mount.innerHTML = '<div class="calendly-inline-widget" data-url="@CALENDLY@" data-resize="true" ' +
-      'style="min-width:280px; width:100%; height:' + h + 'px;"></div>';
+    mount.innerHTML = '';
+    var host = document.createElement('div');
+    host.style.minWidth = '280px';
+    host.style.width = '100%';
+    host.style.height = height() + 'px';
+    mount.appendChild(host);
+
     var css = document.createElement('link');
     css.rel = 'stylesheet';
     css.href = 'https://assets.calendly.com/assets/external/widget.css';
     document.head.appendChild(css);
+
+    var start = function () {
+      if (window.Calendly && window.Calendly.initInlineWidget) {
+        window.Calendly.initInlineWidget({ url: URL, parentElement: host });
+      } else {
+        host.className = 'calendly-inline-widget';
+        host.setAttribute('data-url', URL);
+      }
+    };
+
     var js = document.createElement('script');
     js.src = 'https://assets.calendly.com/assets/external/widget.js';
     js.async = true;
+    js.onload = start;
+    js.onerror = function () { fallback(host); };
     document.body.appendChild(js);
+    setTimeout(function () { fallback(host); }, 6000);
+    window.addEventListener('resize', function () {
+      if (host.querySelector('iframe')) host.style.height = height() + 'px';
+    });
   }
 
   if (window.faConsent && window.faConsent.has('external')) load();

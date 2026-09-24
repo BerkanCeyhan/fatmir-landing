@@ -138,3 +138,43 @@ DATENSCHUTZ_MAIN = f'''  <main style="flex:1; padding:clamp(122px,14vw,150px) 22
     </div>
   </main>
 '''
+
+# ----------------------------------------------------------------------- Danke
+
+DANKE_MAIN = f'''  <main style="flex:1; padding:clamp(122px,14vw,160px) 22px clamp(56px,7vw,96px);">
+    <div style="max-width:760px; margin:0 auto;">
+      <div style="display:inline-flex; align-items:center; justify-content:center; width:66px; height:66px; margin-bottom:26px; border-radius:50%; background:#C32828;">
+        <svg viewBox="0 0 32 32" aria-hidden="true" style="width:34px; height:34px;"><path d="M8 16.6 L13.6 22.2 L24.2 10.4" fill="none" stroke="#F5F2EC" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+      <h1 style="margin:0; font-size:clamp(2.1rem,5.4vw,3.4rem); line-height:1.1; letter-spacing:-.02em; color:#14181A;">Termin steht. Wir sehen uns.</h1>
+      <p style="margin:18px 0 0; max-width:52ch; font-size:clamp(1.05rem,1.5vw,1.2rem); line-height:1.65; color:#3A413D;">Die Bestätigung liegt schon in deinem Postfach, mit Termin und Einwahl. Kommt nichts an, schau kurz im Spam nach.</p>
+
+      <h2 style="margin:42px 0 16px; font-size:clamp(1.3rem,2.6vw,1.7rem); line-height:1.2; letter-spacing:-.02em;">Was jetzt passiert</h2>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="display:flex; gap:16px; align-items:flex-start; padding:18px 22px; border-radius:20px; background:#EBE7DE;">
+          <span style="flex:none; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:#C32828; color:#F5F2EC; font-family:\'Bricolage Grotesque\',\'Karla\',sans-serif; font-size:1rem; font-weight:700;">1</span>
+          <p style="margin:0; font-size:1.02rem; line-height:1.6; color:#3A413D;"><strong style="color:#14181A;">Kalendereintrag.</strong> Der Termin liegt in deinem Kalender, du musst nichts weiter tun.</p>
+        </div>
+        <div style="display:flex; gap:16px; align-items:flex-start; padding:18px 22px; border-radius:20px; background:#EBE7DE;">
+          <span style="flex:none; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:#C32828; color:#F5F2EC; font-family:\'Bricolage Grotesque\',\'Karla\',sans-serif; font-size:1rem; font-weight:700;">2</span>
+          <p style="margin:0; font-size:1.02rem; line-height:1.6; color:#3A413D;"><strong style="color:#14181A;">Ich melde mich persönlich.</strong> Kein Account Manager, kein Junior. Fatmir sitzt selbst im Gespräch.</p>
+        </div>
+        <div style="display:flex; gap:16px; align-items:flex-start; padding:18px 22px; border-radius:20px; background:#EBE7DE;">
+          <span style="flex:none; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:#C32828; color:#F5F2EC; font-family:\'Bricolage Grotesque\',\'Karla\',sans-serif; font-size:1rem; font-weight:700;">3</span>
+          <p style="margin:0; font-size:1.02rem; line-height:1.6; color:#3A413D;"><strong style="color:#14181A;">30 Minuten Klartext.</strong> Wir schauen, wo du stehst und welcher Hebel bei dir zuerst zieht. Passt es nicht, sage ich es dir direkt.</p>
+        </div>
+      </div>
+
+      <h2 style="margin:42px 0 12px; font-size:clamp(1.3rem,2.6vw,1.7rem); line-height:1.2; letter-spacing:-.02em;">Damit das Gespräch was bringt</h2>
+      <p style="margin:0 0 10px; font-size:1.02rem; line-height:1.7; color:#3A413D;">Leg dir kurz zurecht, wo es gerade hakt, was du im Monat für Werbung ausgibst und auf welchen Kanälen du unterwegs bist. Mehr braucht es nicht. Keine Präsentation, keine Hausaufgaben.</p>
+      <p style="margin:0; font-size:1.02rem; line-height:1.7; color:#3A413D;">Kommt etwas dazwischen, sag einfach Bescheid: <a href="mailto:{MAIL}" style="color:#A02121; font-weight:600;">{MAIL}</a> oder <a href="tel:+4923313442428" style="color:#A02121; font-weight:600;">{TEL}</a>. Verschieben ist kein Problem, nicht auftauchen schon.</p>
+
+      <div style="margin-top:44px; padding:clamp(24px,3.4vw,36px); border-radius:24px; background:#C32828; color:#F5F2EC;">
+        <p style="margin:0 0 6px; font-family:\'Bricolage Grotesque\',\'Karla\',sans-serif; font-size:clamp(1.3rem,2.6vw,1.8rem); font-weight:700; line-height:1.15; letter-spacing:-.03em;">„Gib alles, nur nicht auf.“</p>
+        <p style="margin:0; font-size:1rem; line-height:1.6; color:rgba(245,242,236,.82);">Bis gleich. Fatmir</p>
+      </div>
+
+      <p style="margin:32px 0 0;"><a href="../" style="display:inline-flex; align-items:center; min-height:48px; padding:14px 26px; border-radius:999px; border:1.5px solid rgba(20,24,26,.28); color:#14181A; font-size:1rem; font-weight:600;">Zurück zur Startseite</a></p>
+    </div>
+  </main>
+'''

@@ -282,6 +282,12 @@ d = build_subpage(
     "Kurz und ohne Nebelkerzen.",
     pg.DATENSCHUTZ_MAIN, '"../kontakt/"', robots="index, follow")
 
+# Dankeseite: fuer Besucher nach der Buchung, nicht fuer die Suche
+t_danke = build_subpage(
+    "danke", "Danke, dein Termin steht — Fatmir Adzaj",
+    "Termin bestätigt. Was jetzt passiert und wie du das Gespräch vorbereitest.",
+    pg.DANKE_MAIN, '"../kontakt/"', robots="noindex, follow")
+
 (OUT / "robots.txt").write_text(
     "User-agent: *\n"
     "Allow: /\n\n"
@@ -300,4 +306,4 @@ sitemap.append("</urlset>")
 
 size = sum(f.stat().st_size for f in ASSETS.rglob("*") if f.is_file())
 print(f"index {len(index_page)//1024} KB | kontakt {k//1024} KB | impressum {i//1024} KB | "
-      f"datenschutz {d//1024} KB | {count} Assets, {size//1024} KB")
+      f"datenschutz {d//1024} KB | danke {t_danke//1024} KB | {count} Assets, {size//1024} KB")
