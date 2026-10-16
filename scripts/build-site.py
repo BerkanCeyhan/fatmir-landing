@@ -305,6 +305,10 @@ if NEU_SRC.exists():
     for p in ("kontakt/", "impressum/", "datenschutz/"):
         n_body = n_body.replace(f'href="{p}"', f'href="../{p}"')
     n_js = re.search(r"<script data-neu-script[^>]*>(.*?)</script>", nsrc, re.S).group(1)
+    n_pre = re.search(r"<script data-neu-before[^>]*>(.*?)</script>", nsrc, re.S)
+    start = "(function () {\n  var page = new Component("
+    assert INDEX_JS.count(start) == 1
+    neu_index_js = INDEX_JS.replace(start, (n_pre.group(1) if n_pre else "") + "\n" + start)
     neu_page = f"""<!DOCTYPE html>
 <html lang="de">
 <head>
@@ -313,7 +317,7 @@ if NEU_SRC.exists():
 <body>
 {n_body}
 {consent_markup(1)}
-<script>{INDEX_JS}</script>
+<script>{neu_index_js}</script>
 <script>{n_js}</script>
 <script>{consent_script()}</script>
 </body>

@@ -497,6 +497,12 @@
     .callout { grid-template-columns:minmax(0,1.7fr) minmax(0,.8fr); }
   }
 
+  @media (max-width:899px) {
+    .pa-cell { align-items:center; justify-content:center; text-align:center; gap:16px; min-height:0; padding:30px 14px 28px; }
+    .pa-logo { width:56px; height:56px; }
+    .pa-name { font-size:clamp(1.9rem,8.4vw,2.5rem); }
+  }
+
   @media print { body { background:#fff; } }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior:auto; }
@@ -534,7 +540,7 @@
       <div data-hero-text>
         <h1 data-reveal style="margin:0 0 22px; font-size:clamp(2.9rem, 6.6vw, 5.4rem); line-height:.94; letter-spacing:-.035em; text-wrap:balance;">
           Wer dich nicht kennt,<br>
-<span data-masked style="position:relative; display:block; color:#FFFFFF; filter:drop-shadow(0 6px 22px rgba(20,24,26,.62)) drop-shadow(0 1px 3px rgba(20,24,26,.72)) drop-shadow(0 0 1px rgba(20,24,26,.9));"><span data-masked-measure><span data-mw style="display:inline-block; white-space:pre;">kauft<i data-mb style="display:inline-block; width:0; height:0;"></i></span> <span data-mw style="display:inline-block; white-space:pre;">woanders.<i data-mb style="display:inline-block; width:0; height:0;"></i></span></span><svg data-masked-defs aria-hidden="true" focusable="false" style="position:absolute; width:0; height:0; overflow:hidden;"><defs><clipPath id="mh-verkaufen" clipPathUnits="userSpaceOnUse"></clipPath></defs></svg><span data-masked-reveal style="position:absolute; inset:0; display:none; pointer-events:none; clip-path:url(#mh-verkaufen);"><span data-masked-media style="position:absolute; inset:0; display:block; will-change:transform; filter:saturate(1.25) contrast(1.08);"><img src="../assets/fatmir-hero-photo.webp" alt="" draggable="false" style="display:block; width:100%; height:100%; object-fit:cover;"><span style="position:absolute; inset:0; background:linear-gradient(96deg, rgba(255,255,255,.9), rgba(255,255,255,.72));"></span></span></span></span>
+<span style="display:block;">kauft woanders<span style="color:var(--red);">.</span></span>
         </h1>
         <p data-reveal style="margin:0 0 16px; max-width:42ch; font-size:clamp(1.08rem,1.5vw,1.32rem); line-height:1.6; color:#20262A;">
           Keine Agentur, keine Theorie. Ich steh mit meinem Namen dafür und beweise es jeden Tag.
@@ -2272,6 +2278,17 @@ class Component extends DCLogic {
     if (this._onResize) window.removeEventListener('resize', this._onResize);
   }
 }
+
+
+// Läuft vor dem Start der Seitenlogik: der Grainient-Verlauf im Hero und im
+// Abschluss nimmt Rot statt des alten Orange (#B5502C) als Akzent.
+(function (orig) {
+  Component.prototype.labDefaults = function () {
+    var t = orig.call(this);
+    t.accent = '#9A2020';
+    return t;
+  };
+})(Component.prototype.labDefaults);
 
 (function () {
   var page = new Component({ showKurs: true, showLab: false, faqSingleOpen: true, spiralSpeed: 0.55 });
