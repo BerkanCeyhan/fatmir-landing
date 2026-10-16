@@ -25,20 +25,15 @@ UL = 'style="margin:0 0 14px; padding-left:20px; font-size:1.02rem; line-height:
 # --------------------------------------------------------------------- Kontakt
 
 KONTAKT_MAIN = f'''  <main id="termin" style="flex:1; padding:clamp(122px,14vw,160px) clamp(12px,3vw,22px) clamp(56px,7vw,96px);">
-    <div style="max-width:1000px; margin:0 auto;">
-      <h1 style="margin:0; font-size:clamp(2.1rem,5.4vw,3.4rem); line-height:1.12; letter-spacing:-.02em; color:#14181A;">Termin mit Fatmir buchen</h1>
-      <p style="margin:18px 0 0; max-width:52ch; font-size:clamp(1.05rem,1.5vw,1.2rem); line-height:1.65; color:#4B534F;">Such dir einen freien Platz im Kalender aus. Im Gespräch klären wir, wo du gerade stehst und welcher Hebel bei dir am schnellsten Sichtbarkeit bringt.</p>
-      <div style="margin-top:18px; display:flex; flex-wrap:wrap; gap:8px 20px; font-size:.98rem; font-weight:600; color:#4B534F;">
-        <span>30 Minuten</span><span style="color:rgba(20,24,26,.3);">·</span>
-        <span>kostenlos</span><span style="color:rgba(20,24,26,.3);">·</span>
-        <span>persönlich mit Fatmir</span>
-      </div>
+    <div style="max-width:1100px; margin:0 auto;">
+      <h1 style="margin:0; text-align:center; font-size:clamp(2.1rem,5.4vw,3.6rem); line-height:1.08; letter-spacing:-.03em; color:#14181A;">Termin mit Fatmir buchen</h1>
+      <p style="margin:18px auto 0; text-align:center; max-width:52ch; font-size:clamp(1.05rem,1.5vw,1.2rem); line-height:1.65; color:#4B534F;">Such dir einen freien Platz im Kalender aus. Im Gespräch klären wir, wo du gerade stehst und welcher Hebel bei dir am schnellsten Sichtbarkeit bringt.</p>
 
       <div data-calendly style="margin-top:clamp(30px,4vw,48px); border-radius:22px; border:1px solid rgba(20,24,26,.1); background:#FDFBF6; box-shadow:0 18px 48px rgba(20,24,26,.06); overflow:visible;">
         <div data-calendly-gate style="min-height:420px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; padding:clamp(28px,5vw,56px); text-align:center;">
           <p style="margin:0; max-width:46ch; font-size:1.05rem; line-height:1.65; color:#3A413D;">Der Kalender kommt von Calendly. Beim Laden erfährt Calendly deine IP Adresse und setzt eigene Cookies. Deshalb fragen wir vorher.</p>
           <button type="button" data-calendly-load style="min-height:54px; padding:16px 30px; border-radius:999px; border:none; background:#C32828; color:#F5F2EC; font-family:inherit; font-size:1.02rem; font-weight:600; cursor:pointer;">Kalender laden und Termin wählen</button>
-          <p style="margin:0; font-size:.9rem; line-height:1.6; color:#767D78;">Kein Kalender nötig? Schreib einfach an <a href="mailto:{MAIL}" style="color:#A02121; font-weight:600;">{MAIL}</a> oder ruf an: <a href="tel:+4923313442428" style="color:#A02121; font-weight:600;">{TEL}</a></p>
+          <p style="margin:0; font-size:.9rem; line-height:1.6; color:#57514D;">Kein Kalender nötig? Schreib einfach an <a href="mailto:{MAIL}" style="color:#A02121; font-weight:600;">{MAIL}</a> oder ruf an: <a href="tel:+4923313442428" style="color:#A02121; font-weight:600;">{TEL}</a></p>
         </div>
         <div data-calendly-mount style="display:none; border-radius:22px; overflow:hidden;"></div>
       </div>

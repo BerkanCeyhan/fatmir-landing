@@ -212,20 +212,15 @@
   </nav>
 
   <main id="termin" style="flex:1; padding:clamp(122px,14vw,160px) clamp(12px,3vw,22px) clamp(56px,7vw,96px);">
-    <div style="max-width:1000px; margin:0 auto;">
-      <h1 style="margin:0; font-size:clamp(2.1rem,5.4vw,3.4rem); line-height:1.12; letter-spacing:-.02em; color:#14181A;">Termin mit Fatmir buchen</h1>
-      <p style="margin:18px 0 0; max-width:52ch; font-size:clamp(1.05rem,1.5vw,1.2rem); line-height:1.65; color:#4B534F;">Such dir einen freien Platz im Kalender aus. Im Gespräch klären wir, wo du gerade stehst und welcher Hebel bei dir am schnellsten Sichtbarkeit bringt.</p>
-      <div style="margin-top:18px; display:flex; flex-wrap:wrap; gap:8px 20px; font-size:.98rem; font-weight:600; color:#4B534F;">
-        <span>30 Minuten</span><span style="color:rgba(20,24,26,.3);">·</span>
-        <span>kostenlos</span><span style="color:rgba(20,24,26,.3);">·</span>
-        <span>persönlich mit Fatmir</span>
-      </div>
+    <div style="max-width:1100px; margin:0 auto;">
+      <h1 style="margin:0; text-align:center; font-size:clamp(2.1rem,5.4vw,3.6rem); line-height:1.08; letter-spacing:-.03em; color:#14181A;">Termin mit Fatmir buchen</h1>
+      <p style="margin:18px auto 0; text-align:center; max-width:52ch; font-size:clamp(1.05rem,1.5vw,1.2rem); line-height:1.65; color:#4B534F;">Such dir einen freien Platz im Kalender aus. Im Gespräch klären wir, wo du gerade stehst und welcher Hebel bei dir am schnellsten Sichtbarkeit bringt.</p>
 
       <div data-calendly style="margin-top:clamp(30px,4vw,48px); border-radius:22px; border:1px solid rgba(20,24,26,.1); background:#FDFBF6; box-shadow:0 18px 48px rgba(20,24,26,.06); overflow:visible;">
         <div data-calendly-gate style="min-height:420px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; padding:clamp(28px,5vw,56px); text-align:center;">
           <p style="margin:0; max-width:46ch; font-size:1.05rem; line-height:1.65; color:#3A413D;">Der Kalender kommt von Calendly. Beim Laden erfährt Calendly deine IP Adresse und setzt eigene Cookies. Deshalb fragen wir vorher.</p>
           <button type="button" data-calendly-load style="min-height:54px; padding:16px 30px; border-radius:999px; border:none; background:#C32828; color:#F5F2EC; font-family:inherit; font-size:1.02rem; font-weight:600; cursor:pointer;">Kalender laden und Termin wählen</button>
-          <p style="margin:0; font-size:.9rem; line-height:1.6; color:#767D78;">Kein Kalender nötig? Schreib einfach an <a href="mailto:team@fatmir.de" style="color:#A02121; font-weight:600;">team@fatmir.de</a> oder ruf an: <a href="tel:+4923313442428" style="color:#A02121; font-weight:600;">02331 3442428</a></p>
+          <p style="margin:0; font-size:.9rem; line-height:1.6; color:#57514D;">Kein Kalender nötig? Schreib einfach an <a href="mailto:team@fatmir.de" style="color:#A02121; font-weight:600;">team@fatmir.de</a> oder ruf an: <a href="tel:+4923313442428" style="color:#A02121; font-weight:600;">02331 3442428</a></p>
         </div>
         <div data-calendly-mount style="display:none; border-radius:22px; overflow:hidden;"></div>
       </div>
@@ -421,16 +416,17 @@
    so haengt es nicht davon ab, wann das Skript im Seitenaufbau ankommt.
    Kommt nach sechs Sekunden kein Rahmen, erscheint ein Link nach draussen. */
 (function () {
-  var URL = 'https://calendly.com/team-fatmir/30min?primary_color=c32828';
+  var URL = 'https://calendly.com/team-fatmir/30min?hide_gdpr_banner=1&primary_color=c32828';
   var gate = document.querySelector('[data-calendly-gate]');
   var mount = document.querySelector('[data-calendly-mount]');
   var button = document.querySelector('[data-calendly-load]');
   if (!gate || !mount) return;
   var loaded = false;
 
+  // Calendly zeigt ab 1000 px Breite Details und Kalender nebeneinander, darunter gestapelt
   function height() {
-    var w = window.innerWidth;
-    return w < 720 ? 1150 : (w < 1000 ? 1000 : 900);
+    var w = mount.getBoundingClientRect().width || window.innerWidth;
+    return w >= 1000 ? 820 : (w >= 700 ? 1080 : 1150);
   }
 
   function fallback(host) {
@@ -450,6 +446,9 @@
     loaded = true;
     gate.style.display = 'none';
     mount.style.display = 'block';
+    // Calendly bringt eine eigene Karte mit, die Rahmenbox fällt dann weg
+    var box = document.querySelector('[data-calendly]');
+    if (box) { box.style.border = '0'; box.style.background = 'transparent'; box.style.boxShadow = 'none'; }
     mount.innerHTML = '';
     var host = document.createElement('div');
     host.style.minWidth = '280px';

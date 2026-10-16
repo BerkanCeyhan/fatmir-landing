@@ -123,6 +123,20 @@ const JOBS = [
       "writing, no signage. Landscape 4:3 composition, he is cropped at the waist, centred, and " +
       "occupies about eighty percent of the image height.",
   },
+  {
+    name: "neu-weg",
+    aspect: "16:9",
+    prompt:
+      LIGHT +
+      " Three small scenes stand left to right on one shared hairline ground line, joined by a fine " +
+      "dotted line that rises gently from left to right. Left scene: an upright smartphone on a slim " +
+      "tripod next to a ring light drawn as one thin circle on a stand, ready to film. Middle scene: a " +
+      "large upright smartphone showing a simplified live stream, a tiny solid red circle in its top " +
+      "left corner and four small red hearts floating up from its edge. Right scene: an open parcel " +
+      "box with a red shopping bag rising out of it and beside it a small calendar sheet with one day " +
+      "marked by a red filled square. The three scenes have the same visual weight and generous space " +
+      "between them. Wide 16:9 composition, every scene keeps a clear margin to the frame edges.",
+  },
 ];
 
 const MIME = { ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp" };

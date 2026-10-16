@@ -150,9 +150,10 @@ CALENDLY_JS = '''
   if (!gate || !mount) return;
   var loaded = false;
 
+  // Calendly zeigt ab 1000 px Breite Details und Kalender nebeneinander, darunter gestapelt
   function height() {
-    var w = window.innerWidth;
-    return w < 720 ? 1150 : (w < 1000 ? 1000 : 900);
+    var w = mount.getBoundingClientRect().width || window.innerWidth;
+    return w >= 1000 ? 820 : (w >= 700 ? 1080 : 1150);
   }
 
   function fallback(host) {
@@ -172,6 +173,9 @@ CALENDLY_JS = '''
     loaded = true;
     gate.style.display = 'none';
     mount.style.display = 'block';
+    // Calendly bringt eine eigene Karte mit, die Rahmenbox fällt dann weg
+    var box = document.querySelector('[data-calendly]');
+    if (box) { box.style.border = '0'; box.style.background = 'transparent'; box.style.boxShadow = 'none'; }
     mount.innerHTML = '';
     var host = document.createElement('div');
     host.style.minWidth = '280px';

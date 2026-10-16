@@ -19,6 +19,7 @@ PICKS = {
     "neu-marketing-2": ("neu-marketing", 1000),
     "neu-coaching-1": ("neu-coaching", 1000),
     "neu-award-1": ("neu-award", 1200),
+    "neu-weg-2": ("neu-weg", 1400),
 }
 
 
@@ -44,6 +45,11 @@ for src, (name, width) in PICKS.items():
                               arr[-24:, :24].reshape(-1, 3), arr[-24:, -24:].reshape(-1, 3)])
     bg = tuple(int(v) for v in np.median(corners, axis=0))
     rgba = color_to_alpha(arr, bg)
+    if name == "neu-weg":
+        # leeren Rand oben und unten abschneiden, die Szenen liegen in der Mitte
+        box = rgba.getchannel("A").point(lambda v: 255 if v > 120 else 0).getbbox()
+        pad = 40
+        rgba = rgba.crop((0, max(0, box[1] - pad), rgba.width, min(rgba.height, box[3] + pad)))
     h = round(rgba.height * width / rgba.width)
     rgba = rgba.resize((width, h), Image.LANCZOS)
     out = ROOT / "img2" / f"{name}.webp"
