@@ -41,13 +41,28 @@ KONTAKT_MAIN = f'''  <main id="termin" style="flex:1; padding:clamp(122px,14vw,1
   </main>
 '''
 
+# -------------------------------------------------------------------------- 404
+
+NOTFOUND_MAIN = '''  <main style="flex:1; display:flex; align-items:center; padding:clamp(122px,14vw,160px) 22px clamp(56px,7vw,96px);">
+    <div style="max-width:640px; margin:0 auto; text-align:center;">
+      <p style="margin:0 0 12px; font-family:'Bricolage Grotesque', 'Karla', sans-serif; font-size:clamp(4rem,12vw,7rem); font-weight:700; line-height:1; letter-spacing:-.04em; color:#C32828;">404</p>
+      <h1 style="margin:0; font-size:clamp(1.8rem,4.4vw,2.8rem); line-height:1.1; letter-spacing:-.025em; color:#14181A;">Diese Seite gibt es nicht.</h1>
+      <p style="margin:16px auto 0; max-width:40ch; font-size:1.1rem; line-height:1.6; color:#57514D;">Vielleicht ein alter Link. Auf der Startseite findest du alles, oder du buchst direkt einen Termin.</p>
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px 26px; margin-top:30px;">
+        <a href="../" style="display:inline-flex; align-items:center; min-height:54px; padding:15px 28px; border-radius:999px; background:#C32828; color:#F5F2EC; font-size:1.02rem; font-weight:600;">Zur Startseite</a>
+        <a href="../kontakt/" style="color:#14181A; font-weight:600; text-decoration:underline; text-underline-offset:4px;">Termin buchen</a>
+      </div>
+    </div>
+  </main>
+'''
+
 # -------------------------------------------------------------------- Impressum
 
 IMPRESSUM_MAIN = f'''  <main style="flex:1; padding:clamp(122px,14vw,150px) 22px clamp(56px,7vw,96px);">
     <div style="max-width:760px; margin:0 auto;">
       <h1 style="margin:0 0 28px; font-size:clamp(2rem,5vw,3rem); line-height:1.12; letter-spacing:-.02em; color:#14181A;">Impressum</h1>
 
-      <h2 {H2}>Angaben gemäß § 5 TMG</h2>
+      <h2 {H2}>Angaben gemäß § 5 DDG</h2>
       <p {P}>{NAME}<br>{STREET}<br>{CITY}<br>Deutschland</p>
 
       <h2 {H2}>Kontakt</h2>
