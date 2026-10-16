@@ -490,6 +490,8 @@
   .coach-form { width:100%; max-width:520px; text-align:center; }
   .coach-form form { justify-content:center; margin:0 auto; }
   .coach-form [data-waitlist-done] { margin:0 auto; text-align:left; }
+  .coach-form [data-waitlist-msg]:empty { display:none; }
+  .coach-form [data-consent-note] { margin-top:2px; }
 
   @media (min-width:900px) {
     .more-row { grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr) minmax(0,1fr); }
@@ -800,10 +802,10 @@
             <div aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
               <label>Website<input data-waitlist-hp type="text" tabindex="-1" autocomplete="off" name="website" value=""></label>
             </div>
-            <input data-waitlist type="email" required placeholder="Deine Adresse für die Warteliste" style="flex:1 1 230px; min-height:54px; padding:15px 20px; border-radius:999px; border:1.5px solid rgba(20,24,26,.18); background:#F5F2EC; font-family:inherit; font-size:1rem; color:#14181A;">
+            <input data-waitlist type="email" required placeholder="Deine E-Mail-Adresse" aria-label="Deine E-Mail-Adresse" style="flex:1 1 230px; min-height:54px; padding:15px 20px; border-radius:999px; border:1.5px solid rgba(20,24,26,.18); background:#F5F2EC; font-family:inherit; font-size:1rem; color:#14181A;">
             <button type="submit" data-magnet style="min-height:54px; padding:15px 28px; border-radius:999px; border:none; background:#14181A; color:#F5F2EC; font-family:inherit; font-size:1rem; font-weight:600; cursor:pointer; transition:transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease;">Platz vormerken</button>
             <div data-waitlist-msg style="flex:1 1 100%; font-size:.95rem; font-weight:500; color:#A02121; min-height:1.2em;"></div>
-            <p style="flex:1 1 100%; margin:2px 0 0; font-size:.85rem; line-height:1.55; color:#57514D;">Mit dem Absenden willigst du ein, dass wir deine Adresse für diese eine Nachricht speichern. Mehr dazu im <a href="../datenschutz/" style="color:#57514D; text-decoration:underline;">Datenschutz</a>.</p>
+            <p data-consent-note style="flex:1 1 100%; margin:0; font-size:.72rem; line-height:1.5; color:#6E6763;">Mit dem Absenden willigst du ein, dass wir deine Adresse für diese eine Nachricht speichern. Mehr dazu im <a href="../datenschutz/" style="color:#6E6763; text-decoration:underline;">Datenschutz</a>.</p>
           </form>
           <div data-waitlist-done style="display:none; align-items:center; gap:18px; max-width:520px; padding:20px 24px; border-radius:24px; background:#EBE7DE;">
             <span data-waitlist-badge style="position:relative; flex:none; display:inline-flex; align-items:center; justify-content:center; width:54px; height:54px; border-radius:50%; background:#C32828;">
