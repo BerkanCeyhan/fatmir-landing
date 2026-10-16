@@ -90,8 +90,9 @@ PERSON_LD = {
 }
 
 
-def head(title, description, canonical, robots="index, follow", depth=0, extra=""):
+def head(title, description, canonical, robots="index, follow", depth=0, extra="", css=None):
     up = "../" * depth
+    css = style if css is None else css
     ld = ""
     if depth == 0:
         ld = ('\n<script type="application/ld+json">'
@@ -122,9 +123,9 @@ def head(title, description, canonical, robots="index, follow", depth=0, extra="
 <meta name="theme-color" content="#F5F2EC">
 <link rel="icon" href="{up}assets/favicon.png">
 <link rel="apple-touch-icon" href="{up}assets/favicon.png">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/BricolageGrotesque-700-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/BricolageGrotesque-500-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/Karla-400-latin.woff2">
-<style>{fonts_css}{style}</style>{ld}{extra}"""
+<style>{fonts_css}{css}</style>{ld}{extra}"""
 
 
 def consent_markup(depth):
@@ -288,6 +289,40 @@ t_danke = build_subpage(
     "Termin bestätigt. Was jetzt passiert und wie du das Gespräch vorbereitest.",
     pg.DANKE_MAIN, '"../kontakt/"', robots="noindex, follow")
 
+# Vorschau /neu/: zweite Startseite aus Neu.dc.html, gleiche Logik wie die Startseite
+# plus eigenes Skript, nicht in der Sitemap und nicht im Index
+NEU_SRC = ROOT / "Neu.dc.html"
+t_neu = 0
+if NEU_SRC.exists():
+    nsrc = NEU_SRC.read_text(encoding="utf-8")
+    n_style = re.search(r"<style>(.*?)</style>",
+                        re.search(r"<helmet>(.*?)</helmet>", nsrc, re.S).group(1), re.S).group(1)
+    n_body = re.search(r"<x-dc>(.*?)</x-dc>", nsrc, re.S).group(1)
+    n_body = re.sub(r"<helmet>.*?</helmet>", "", n_body, flags=re.S)
+    n_body = re.sub(r"<sc-if[^>]*>", "", n_body).replace("</sc-if>", "")
+    n_body = re.sub(r'\s*on(?:Click|Submit)="\{\{[^}]*\}\}"', "", n_body)
+    n_body = re.sub(r'src="([^"/:]+\.(?:png|jpe?g|webp|svg))"', r'src="../assets/\1"', n_body)
+    for p in ("kontakt/", "impressum/", "datenschutz/"):
+        n_body = n_body.replace(f'href="{p}"', f'href="../{p}"')
+    n_js = re.search(r"<script data-neu-script[^>]*>(.*?)</script>", nsrc, re.S).group(1)
+    neu_page = f"""<!DOCTYPE html>
+<html lang="de">
+<head>
+{head(INDEX_TITLE, INDEX_DESC, pg.SITE + "/neu/", robots="noindex, nofollow", depth=1, css=n_style)}
+</head>
+<body>
+{n_body}
+{consent_markup(1)}
+<script>{INDEX_JS}</script>
+<script>{n_js}</script>
+<script>{consent_script()}</script>
+</body>
+</html>
+"""
+    (OUT / "neu").mkdir(parents=True, exist_ok=True)
+    (OUT / "neu" / "index.html").write_text(neu_page, encoding="utf-8")
+    t_neu = len(neu_page)
+
 (OUT / "robots.txt").write_text(
     "User-agent: *\n"
     "Allow: /\n\n"
@@ -306,4 +341,5 @@ sitemap.append("</urlset>")
 
 size = sum(f.stat().st_size for f in ASSETS.rglob("*") if f.is_file())
 print(f"index {len(index_page)//1024} KB | kontakt {k//1024} KB | impressum {i//1024} KB | "
-      f"datenschutz {d//1024} KB | danke {t_danke//1024} KB | {count} Assets, {size//1024} KB")
+      f"datenschutz {d//1024} KB | danke {t_danke//1024} KB | neu {t_neu//1024} KB | "
+      f"{count} Assets, {size//1024} KB")

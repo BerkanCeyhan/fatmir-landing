@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fatmir Adzaj</title>
+<style>
+  @font-face { font-family:"Bricolage V"; font-style:normal; font-weight:200 800; font-display:swap; src:url(/assets/fonts/BricolageGrotesque-500-latin.woff2) format("woff2"); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family:"Bricolage V"; font-style:normal; font-weight:200 800; font-display:swap; src:url(/assets/fonts/BricolageGrotesque-500-latin-ext.woff2) format("woff2"); unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family:"Karla V"; font-style:normal; font-weight:400 800; font-display:swap; src:url(/assets/fonts/Karla-400-latin.woff2) format("woff2"); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family:"Karla V"; font-style:normal; font-weight:400 800; font-display:swap; src:url(/assets/fonts/Karla-400-latin-ext.woff2) format("woff2"); unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+  :root {
+    --paper:#F5F2EC; --sand:#EBE7DE; --surface:#FDFBF6; --ink:#14181A;
+    --red:#C32828; --red-deep:#A02121;
+    --muted:#57514D; --muted-soft:#7A736F;
+    --line:rgba(20,24,26,.13); --line-strong:rgba(20,24,26,.26);
+    --line-dark:rgba(245,242,236,.16); --on-dark:rgba(245,242,236,.74);
+    --display:"Bricolage V", "Bricolage Grotesque", "Karla", Helvetica, sans-serif;
+    --body:"Karla V", "Karla", Helvetica, Arial, sans-serif;
+    --ease:cubic-bezier(.16,1,.3,1);
+    --wrap:1240px; --gutter:clamp(20px,4vw,40px);
+    --sec:clamp(88px,11vw,164px);
+  }
+
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--body); font-size:1.0625rem; line-height:1.62; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  *, *::before, *::after { box-sizing:border-box; }
+  img { display:block; max-width:100%; height:auto; }
+  h1, h2, h3 { font-family:var(--display); font-weight:760; letter-spacing:-.035em; line-height:1; margin:0; text-wrap:balance; }
+  p, ul, ol, dl, dd, dt, figure, blockquote { margin:0; padding:0; }
+  ul, ol { list-style:none; }
+  a { color:var(--red-deep); text-decoration:none; }
+  a:hover { color:var(--ink); }
+  ::selection { background:rgba(195,40,40,.18); }
+  :focus-visible { outline:2px solid var(--red); outline-offset:3px; }
+  .wrap { width:100%; max-width:var(--wrap); margin:0 auto; padding-inline:var(--gutter); }
+
+  @keyframes rise { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
+  @keyframes riseLeft { from { opacity:0; transform:translate3d(-46px,14px,0); } to { opacity:1; transform:none; } }
+  @keyframes riseRight { from { opacity:0; transform:translate3d(46px,14px,0); } to { opacity:1; transform:none; } }
+  @keyframes riseSoft { from { opacity:0; transform:translate3d(0,34px,0) scale(.985); } to { opacity:1; transform:none; } }
+  @keyframes pulseDot { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+  @keyframes checkPop { 0% { transform:scale(.4); opacity:0; } 60% { transform:scale(1.08); opacity:1; } 100% { transform:scale(1); opacity:1; } }
+  @keyframes checkDraw { to { stroke-dashoffset:0; } }
+  @keyframes checkRing { from { opacity:.55; transform:scale(.7); } to { opacity:0; transform:scale(1.9); } }
+  @keyframes breathe { 0%,100% { transform:translate(-50%,-50%) scale(1); opacity:.9; } 50% { transform:translate(-50%,-50%) scale(1.08); opacity:1; } }
+  @keyframes heartUp { 0% { opacity:0; transform:translate(0,0) scale(var(--s,1)); } 14% { opacity:1; } 100% { opacity:0; transform:translate(var(--x,0),-190px) scale(calc(var(--s,1) * 1.15)); } }
+  @keyframes msgIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+  @keyframes toast { 0% { opacity:0; transform:translateY(10px); } 12% { opacity:1; transform:none; } 78% { opacity:1; transform:none; } 100% { opacity:0; transform:translateY(-6px); } }
+  @keyframes ping { 0% { box-shadow:0 0 0 0 rgba(195,40,40,.55); } 100% { box-shadow:0 0 0 14px rgba(195,40,40,0); } }
+
+  /* Knöpfe und Links */
+  .btn { position:relative; display:inline-flex; align-items:center; justify-content:center; min-height:58px; padding:17px 32px; border-radius:999px; font-size:1.05rem; font-weight:650; transition:transform .3s var(--ease), background .3s ease, color .3s ease; }
+  .btn-red { background:var(--red); color:var(--paper); }
+  .btn-red:hover { background:var(--red-deep); color:var(--paper); }
+  .link { color:inherit; font-weight:650; padding-bottom:3px; background:linear-gradient(currentColor,currentColor) 0 100% / 100% 1px no-repeat; transition:background-size .45s var(--ease), color .3s ease; }
+  .link:hover { color:inherit; background-size:0 1px; background-position:100% 100%; }
+
+  /* Kopf einer Sektion */
+  .sec { padding-block:var(--sec); }
+  .sec-head { display:grid; gap:18px 56px; align-items:end; margin-bottom:clamp(40px,5vw,76px); }
+  .sec-head h2 { font-size:clamp(2.3rem,5.2vw,4.4rem); max-width:16ch; }
+  .sec-head p { max-width:38ch; font-size:1.12rem; color:var(--muted); }
+
+  /* Hero-Fakten */
+  .facts { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); margin-top:30px; border-top:1px solid var(--line-strong); max-width:560px; }
+  .facts div { padding:16px 16px 4px 0; }
+  .facts dt { font-family:var(--display); font-weight:760; font-size:clamp(1.6rem,2.4vw,2rem); letter-spacing:-.04em; line-height:1; }
+  .facts dd { margin-top:6px; font-size:.9rem; font-weight:600; color:#2A2624; }
+
+  /* Partneragentur */
+  .pa { padding:clamp(72px,9vw,128px) 0 clamp(80px,10vw,140px); }
+  .pa-h { font-size:clamp(1.5rem,2.6vw,2.15rem); font-weight:680; letter-spacing:-.025em; line-height:1.15; max-width:26ch; margin-bottom:clamp(32px,4vw,52px); }
+  .pa-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); border-top:1px solid var(--line-strong); }
+  .pa-cell { position:relative; display:flex; flex-direction:column; justify-content:space-between; gap:48px; min-height:clamp(190px,21vw,260px); padding:26px 22px 28px; border-bottom:1px solid var(--line-strong); overflow:hidden; }
+  .pa-cell:nth-child(even) { border-left:1px solid var(--line); }
+  .pa-cell > * { position:relative; z-index:1; }
+  .pa-cell::before { content:""; position:absolute; inset:0; background:var(--red); transform:scaleY(0); transform-origin:bottom; transition:transform .55s var(--ease); z-index:0; }
+  .pa-logo { width:40px; height:40px; color:var(--ink); transition:color .3s ease; }
+  .pa-name { display:block; font-family:var(--display); font-weight:780; font-size:clamp(2.1rem,3.8vw,3.5rem); letter-spacing:-.05em; line-height:.92; transition:color .3s ease; }
+  .pa-role { display:block; margin-top:12px; font-size:.98rem; font-weight:600; color:var(--muted); transition:color .3s ease; }
+  @media (hover:hover) {
+    .pa-cell:hover::before { transform:scaleY(1); }
+    .pa-cell:hover .pa-logo, .pa-cell:hover .pa-name { color:var(--paper); }
+    .pa-cell:hover .pa-role { color:rgba(245,242,236,.82); }
+  }
+  .js .pa-grid .pa-cell { opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease) calc(var(--i) * 90ms), transform .9s var(--ease) calc(var(--i) * 90ms); }
+  .js .pa-grid.is-in .pa-cell { opacity:1; transform:none; }
+
+  /* Bühne: das dunkle Kapitel */
+  .stage { position:relative; overflow:hidden; background:var(--ink); color:var(--paper); padding:clamp(104px,13vw,190px) 0 clamp(96px,12vw,170px); }
+  .stage-glow { position:absolute; left:72%; top:46%; width:min(1100px,130vw); aspect-ratio:1; border-radius:50%; background:radial-gradient(closest-side, rgba(195,40,40,.32), rgba(195,40,40,.10) 48%, transparent 74%); pointer-events:none; transform:translate(-50%,-50%); animation:breathe 9s ease-in-out infinite; }
+  .stage .wrap { position:relative; }
+  .statement { font-family:var(--display); font-weight:780; font-size:clamp(2.7rem,7.6vw,6.8rem); line-height:.98; letter-spacing:-.05em; max-width:13ch; margin-bottom:clamp(96px,12vw,176px); }
+  .statement .w { color:rgba(245,242,236,.16); transition:color .35s ease; }
+  .statement .w.on { color:var(--paper); }
+  .stage-grid { display:grid; gap:clamp(48px,6vw,96px); align-items:center; }
+  .stage-h { font-size:clamp(2.9rem,6.8vw,6rem); line-height:.92; letter-spacing:-.05em; margin-bottom:30px; }
+  .stage-lead { max-width:44ch; font-size:clamp(1.15rem,1.5vw,1.32rem); line-height:1.55; color:rgba(245,242,236,.9); margin-bottom:26px; }
+  .stage-explain { max-width:46ch; padding:18px 22px; border:1px solid var(--line-dark); border-radius:18px; margin-bottom:26px; font-size:1.02rem; line-height:1.6; color:var(--on-dark); }
+  .stage-explain strong { color:var(--paper); font-weight:700; }
+  .stage-text { max-width:46ch; color:var(--on-dark); }
+
+  .live { position:relative; max-width:560px; margin-inline:auto; width:100%; }
+  .live > img { width:100%; }
+  .live-pill { position:absolute; left:3%; top:5%; display:inline-flex; align-items:center; gap:8px; padding:7px 13px 7px 11px; border-radius:999px; background:var(--red); color:var(--paper); font-size:.85rem; font-weight:750; letter-spacing:.02em; }
+  .live-pill i { width:8px; height:8px; border-radius:50%; background:var(--paper); animation:pulseDot 1.3s ease-in-out infinite; }
+  .hearts { position:absolute; left:6%; top:24%; width:16%; height:24%; pointer-events:none; }
+  .heart { position:absolute; left:50%; bottom:0; width:22px; height:22px; margin-left:-11px; color:var(--red); animation:heartUp 2.8s var(--ease) forwards; }
+  .heart svg { width:100%; height:100%; fill:currentColor; }
+  .live-card { position:absolute; right:0; bottom:4%; width:min(296px,80%); padding:14px; border-radius:20px; background:rgba(245,242,236,.97); color:var(--ink); box-shadow:0 30px 70px rgba(0,0,0,.42); }
+  .chat { display:flex; flex-direction:column; justify-content:flex-end; gap:7px; height:124px; overflow:hidden; -webkit-mask-image:linear-gradient(transparent, #000 38%); mask-image:linear-gradient(transparent, #000 38%); font-size:.88rem; line-height:1.35; }
+  .chat li { animation:msgIn .5s var(--ease) both; }
+  .chat b { font-weight:750; margin-right:4px; }
+  .buy { display:flex; align-items:center; gap:11px; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); }
+  .buy-thumb { flex:none; width:40px; height:40px; border-radius:10px; background:var(--red); }
+  .buy-t { flex:1; font-size:.86rem; font-weight:700; line-height:1.25; }
+  .buy-t small { display:block; font-weight:500; color:var(--muted); }
+  .buy-btn { flex:none; padding:9px 14px; border-radius:999px; background:var(--ink); color:var(--paper); font-size:.82rem; font-weight:700; }
+  .buy-btn.ping { animation:ping .9s ease-out; }
+  .toast { position:absolute; right:0; top:-50px; display:inline-flex; align-items:center; gap:8px; padding:9px 14px; border-radius:999px; background:var(--paper); color:var(--ink); font-size:.86rem; font-weight:700; box-shadow:0 14px 34px rgba(0,0,0,.3); opacity:0; }
+  .toast svg { width:16px; height:16px; color:var(--red); }
+  .toast.show { animation:toast 2.6s var(--ease) both; }
+
+  .offer { margin-top:clamp(80px,10vw,140px); }
+  .offer-h { max-width:30ch; font-family:var(--display); font-weight:700; font-size:clamp(1.55rem,2.7vw,2.3rem); line-height:1.12; letter-spacing:-.03em; margin-bottom:30px; }
+  .offer-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); border-top:1px solid var(--line-dark); }
+  .offer-grid li { padding:24px 18px 30px 0; border-bottom:1px solid var(--line-dark); overflow:hidden; }
+  .offer-grid li:nth-child(even) { padding-left:20px; border-left:1px solid var(--line-dark); }
+  .offer-grid li::before { content:""; display:block; width:9px; height:9px; border-radius:50%; background:rgba(245,242,236,.22); margin-bottom:26px; transition:background .4s ease calc(var(--i) * 140ms + 350ms), box-shadow .4s ease calc(var(--i) * 140ms + 350ms); }
+  .offer-grid li span { display:inline-block; font-family:var(--display); font-weight:780; font-size:clamp(1.9rem,3.8vw,3.3rem); letter-spacing:-.045em; line-height:1; }
+  .js .offer-grid li span { transform:translateY(115%); transition:transform 1s var(--ease) calc(var(--i) * 140ms); }
+  .offer-grid.is-in li span { transform:none; }
+  .offer-grid.is-in li::before { background:var(--red); box-shadow:0 0 0 6px rgba(195,40,40,.2); }
+  .offer-foot { max-width:52ch; margin-top:28px; font-size:1.15rem; color:var(--on-dark); }
+  .offer-foot strong { color:var(--paper); font-weight:700; }
+  .stage-cta { display:flex; flex-wrap:wrap; align-items:center; gap:20px 32px; margin-top:44px; }
+  .stage-cta .link { color:var(--paper); }
+
+  /* Die anderen Hebel */
+  .more-row { display:grid; gap:24px 56px; align-items:center; padding:clamp(36px,4.6vw,60px) 0; border-top:1px solid var(--line-strong); }
+  .more-row:last-child { border-bottom:1px solid var(--line-strong); }
+  .more-row h3 { font-size:clamp(2rem,3.6vw,3.2rem); line-height:.98; letter-spacing:-.045em; max-width:11ch; }
+  .more-body { display:flex; flex-direction:column; gap:14px; }
+  .more-body p { max-width:52ch; color:var(--muted); }
+  .more-illu { width:100%; max-width:360px; justify-self:center; transition:transform .7s var(--ease); }
+  .more-row:hover .more-illu { transform:translateY(-6px); }
+  .proof { display:flex; align-items:center; gap:16px; margin-top:6px; padding-top:16px; border-top:1px solid var(--line); }
+  .proof img { flex:none; height:24px; width:auto; }
+  .proof p { font-size:.98rem; color:var(--ink) !important; }
+
+  /* Stimmen */
+  .voices { background:var(--sand); }
+  .voice-lead { display:grid; gap:28px 64px; padding:clamp(34px,4.4vw,60px) 0; border-top:1px solid var(--line-strong); }
+  .voice-lead blockquote { max-width:40ch; font-family:var(--display); font-weight:600; font-size:clamp(1.22rem,2vw,1.8rem); line-height:1.28; letter-spacing:-.025em; }
+  .qm { display:block; font-family:var(--display); font-weight:700; font-size:5.2rem; line-height:.62; color:var(--red); margin-bottom:12px; }
+  .who { display:flex; flex-direction:column; gap:14px; font-size:.95rem; color:var(--muted); }
+  .who img { height:34px; width:auto; align-self:flex-start; }
+  .who strong { display:block; color:var(--ink); font-weight:700; }
+  .voice-row { display:grid; border-top:1px solid var(--line-strong); }
+  .voice { display:flex; flex-direction:column; gap:22px; padding:28px 0 30px; }
+  .voice + .voice { border-top:1px solid var(--line); }
+  .voice p { font-size:1.12rem; line-height:1.5; }
+  .voice footer { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-top:auto; font-size:.88rem; font-weight:600; color:var(--muted); }
+  .voice footer img { height:26px; width:auto; max-width:46%; object-fit:contain; opacity:.72; }
+
+  /* Über Fatmir */
+  .about-grid { display:grid; gap:clamp(36px,6vw,96px); align-items:start; }
+  .about-photo img { width:100%; border-radius:26px; }
+  .about-photo figcaption { margin-top:16px; max-width:46ch; font-size:.97rem; line-height:1.55; color:var(--muted); }
+  .about-photo figcaption strong { color:var(--ink); font-weight:700; }
+  .about-copy h2 { font-size:clamp(2.5rem,5.2vw,4.5rem); line-height:.96; letter-spacing:-.045em; margin-bottom:34px; max-width:12ch; }
+  .about-copy > p { max-width:56ch; margin-bottom:20px; font-size:1.12rem; line-height:1.7; color:var(--muted); }
+  .about-copy > p strong { color:var(--ink); font-weight:700; }
+  .about-copy > p.claim { color:var(--ink); font-weight:600; }
+  .about-more { margin:38px 0 44px; border-top:1px solid var(--line-strong); }
+  .about-more div { display:grid; gap:6px 24px; padding:18px 0; border-bottom:1px solid var(--line); }
+  .about-more dt { font-family:var(--display); font-weight:700; font-size:1.18rem; letter-spacing:-.02em; }
+  .about-more dd { color:var(--muted); }
+  .sign { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:20px 28px; }
+  .sign p { font-family:var(--display); font-weight:720; font-size:clamp(1.5rem,2.6vw,2.1rem); letter-spacing:-.035em; line-height:1.1; }
+  .sign img { height:80px; width:auto; opacity:.92; }
+
+  /* Auszeichnungen */
+  .awards { background:var(--sand); }
+  .awards-grid { display:grid; gap:40px 80px; align-items:center; }
+  .awards h2 { font-size:clamp(2.3rem,5vw,4.2rem); max-width:12ch; }
+  .award-list { margin-top:clamp(28px,4vw,48px); border-top:1px solid var(--line-strong); }
+  .award-list li { display:grid; grid-template-columns:minmax(0,6.6rem) minmax(0,1fr); align-items:baseline; gap:28px; padding:18px 0 16px; border-bottom:1px solid var(--line-strong); }
+  .yr { font-family:var(--display); font-weight:780; font-size:clamp(2rem,3.4vw,2.9rem); letter-spacing:-.045em; line-height:1; }
+  .award-name { font-size:1.08rem; font-weight:600; color:var(--muted); }
+  .js .award-list li { opacity:0; transform:translateX(-18px); transition:opacity .7s var(--ease) calc(var(--i) * 110ms), transform .8s var(--ease) calc(var(--i) * 110ms); }
+  .js .award-list.is-in li { opacity:1; transform:none; }
+  .awards-illu { width:100%; max-width:560px; justify-self:center; }
+
+  /* Kunden */
+  .clients-grid { display:grid; gap:24px 56px; align-items:center; }
+  .clients-grid h2 { font-size:clamp(2.1rem,4.2vw,3.5rem); max-width:14ch; margin-bottom:18px; }
+  .clients-grid p { max-width:36ch; font-size:1.1rem; color:var(--muted); }
+
+  /* Ablauf */
+  .steps { background:var(--ink); color:var(--paper); }
+  .steps .sec-head p { color:var(--on-dark); }
+  .track { position:relative; --p:0; }
+  .track-list { display:grid; gap:44px; }
+  .rail { position:absolute; left:9px; top:10px; bottom:10px; width:1px; background:var(--line-dark); }
+  .rail i { position:absolute; inset:0; background:var(--red); transform-origin:top; transform:scaleY(var(--p)); }
+  .step { position:relative; padding-left:48px; }
+  .step-dot { position:absolute; left:0; top:4px; width:19px; height:19px; border-radius:50%; border:1px solid rgba(245,242,236,.42); background:var(--ink); transition:background .4s ease, border-color .4s ease, box-shadow .5s ease; }
+  .step.on .step-dot { background:var(--red); border-color:var(--red); box-shadow:0 0 0 7px rgba(195,40,40,.22); }
+  .step-n { display:block; margin-bottom:10px; font-family:var(--display); font-weight:600; font-size:.98rem; color:rgba(245,242,236,.55); }
+  .step h3 { font-size:clamp(1.55rem,2.5vw,2.1rem); letter-spacing:-.035em; margin-bottom:12px; }
+  .step p { max-width:34ch; color:var(--on-dark); }
+
+  /* Coaching */
+  .coach { background:var(--sand); }
+  .coach-grid { display:grid; gap:44px 80px; align-items:start; }
+  .coach h2 { font-size:clamp(2.3rem,5vw,4.2rem); max-width:12ch; margin-bottom:22px; }
+  .coach-lead { max-width:48ch; font-size:1.12rem; line-height:1.65; color:var(--muted); }
+  .coach-dl { margin:30px 0 8px; border-top:1px solid var(--line-strong); }
+  .coach-dl div { display:grid; gap:4px 24px; padding:16px 0; border-bottom:1px solid var(--line); }
+  .coach-dl dt { font-family:var(--display); font-weight:700; font-size:1.08rem; letter-spacing:-.015em; }
+  .coach-dl dd { color:var(--muted); }
+  .soon { display:flex; align-items:center; gap:10px; margin:28px 0 14px; font-weight:650; color:var(--red-deep); }
+  .soon i { width:8px; height:8px; border-radius:50%; background:var(--red); }
+  .coach-illu { width:100%; max-width:520px; justify-self:center; }
+
+  /* FAQ */
+  .faq-grid { display:grid; gap:32px 80px; align-items:start; }
+  .faq-grid h2 { font-size:clamp(2.3rem,5vw,4rem); margin-bottom:18px; }
+  .faq-side p { max-width:30ch; color:var(--muted); margin-bottom:18px; }
+
+  /* Abschluss */
+  .cta-in { position:relative; z-index:2; max-width:880px; margin:0 auto; padding:clamp(96px,12vw,176px) var(--gutter); text-align:center; display:flex; flex-direction:column; align-items:center; gap:26px; }
+  .cta-in h2 { font-size:clamp(2.4rem,6vw,4.6rem); line-height:.98; letter-spacing:-.045em; }
+  .host { display:flex; align-items:center; gap:14px; text-align:left; }
+  .host img { width:56px; height:56px; border-radius:50%; box-shadow:0 0 0 2px rgba(245,242,236,.9); }
+  .host p { font-size:1.08rem; line-height:1.4; color:rgba(245,242,236,.92); }
+  .host strong { display:block; color:var(--paper); font-weight:700; }
+  .cta-facts { display:flex; flex-wrap:wrap; justify-content:center; font-size:clamp(.88rem,1.2vw,.98rem); font-weight:600; color:var(--paper); }
+  .cta-facts li { padding:2px clamp(10px,2vw,18px); }
+  .cta-facts li + li { border-left:1px solid rgba(245,242,236,.34); }
+
+  /* Fuß */
+  .foot { background:var(--ink); color:var(--paper); padding:clamp(64px,8vw,104px) 0 104px; }
+  .foot-top { display:grid; gap:36px; }
+  .foot-top > p { max-width:30ch; font-size:1.02rem; color:rgba(245,242,236,.62); }
+  .foot-col { display:flex; flex-direction:column; gap:12px; }
+  .foot-col span { font-size:.9rem; font-weight:600; color:rgba(245,242,236,.62); margin-bottom:4px; }
+  .foot-col a { color:rgba(245,242,236,.82); }
+  .foot-col a:hover { color:var(--paper); }
+  .foot-mark { margin-top:clamp(56px,8vw,112px); }
+  .foot-mark img { width:100%; max-width:none; opacity:.96; }
+  .foot-bottom { display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 24px; margin-top:24px; padding-top:20px; border-top:1px solid var(--line-dark); font-size:.9rem; color:rgba(245,242,236,.64); }
+
+  @media (min-width:620px) {
+    .facts { grid-template-columns:repeat(4, minmax(0,1fr)); }
+    .facts div + div { padding-left:16px; border-left:1px solid var(--line-strong); }
+    .about-more div, .coach-dl div { grid-template-columns:minmax(0,9.5rem) minmax(0,1fr); }
+    .voice-row { grid-template-columns:repeat(3, minmax(0,1fr)); }
+    .voice { padding:30px 26px 34px; }
+    .voice:first-child { padding-left:0; }
+    .voice + .voice { border-top:0; border-left:1px solid var(--line); }
+  }
+  @media (min-width:900px) {
+    .sec-head { grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); }
+    .pa-grid { grid-template-columns:repeat(4, minmax(0,1fr)); }
+    .pa-cell { padding:30px 28px 32px; }
+    .pa-cell + .pa-cell { border-left:1px solid var(--line); }
+    .stage-grid { grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); }
+    .offer-grid { grid-template-columns:repeat(4, minmax(0,1fr)); }
+    .offer-grid li { padding-left:24px; border-left:1px solid var(--line-dark); }
+    .offer-grid li:first-child { padding-left:0; border-left:0; }
+    .more-row { grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) minmax(0,.85fr); }
+    .more-illu { justify-self:end; }
+    .voice-lead { grid-template-columns:minmax(0,.62fr) minmax(0,2fr); }
+    .about-grid { grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr); }
+    .about-photo { position:sticky; top:100px; }
+    .awards-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+    .clients-grid { grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr); }
+    .track-list { grid-template-columns:repeat(3, minmax(0,1fr)); gap:48px; }
+    .rail { left:0; right:0; top:9px; bottom:auto; width:auto; height:1px; }
+    .rail i { transform-origin:left; transform:scaleX(var(--p)); }
+    .step { padding-left:0; padding-top:52px; }
+    .step-dot { top:0; }
+    .coach-grid { grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); }
+    .coach-illu { position:sticky; top:140px; margin-top:40px; }
+    .live-card { right:-4%; width:min(296px,64%); }
+    .foot { padding-bottom:36px; }
+    .faq-grid { grid-template-columns:minmax(0,.75fr) minmax(0,1.4fr); }
+    .faq-side { position:sticky; top:110px; }
+    .foot-top { grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr); }
+  }
+
+  @media print { body { background:#fff; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    *, *::before, *::after { animation-duration:.01ms !important; animation-delay:0s !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; transition-delay:0s !important; }
+  }
+</style>
+</helmet>
+
+<script>document.documentElement.classList.add('js');</script>
+<div style="position:relative; max-width:100%; overflow:hidden; background:var(--paper);">
+
+  <nav data-nav style="position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:50; width:calc(100% - 24px); max-width:1120px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:9px 9px 9px 20px; border-radius:999px; border:1px solid transparent; background:transparent; transition:background .45s ease, border-color .45s ease, box-shadow .45s ease, backdrop-filter .45s ease;">
+    <a href="#top" style="display:flex; align-items:center; min-height:44px;">
+      <img src="logo-ink.png" alt="Fatmir Adzaj" style="height:36px; width:auto; display:block;">
+    </a>
+    <div data-nav-links style="display:none; gap:30px; align-items:center; font-size:15px; font-weight:600; color:#4B534F; transition:color .45s ease;">
+      <a href="#social-selling" style="color:inherit;">Leistungen</a>
+      <a href="#stimmen" style="color:inherit;">Stimmen</a>
+      <a href="#fatmir" style="color:inherit;">Über Fatmir</a>
+      <a href="#coaching" style="color:inherit;">Coaching</a>
+    </div>
+    <a href="kontakt/" data-magnet style="display:inline-flex; align-items:center; min-height:44px; padding:12px 22px; border-radius:999px; background:#C32828; color:#F5F2EC; font-size:15px; font-weight:600; white-space:nowrap; transition:transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease;">Jetzt sichtbar werden!</a>
+  </nav>
+
+  <section id="top" data-hero style="position:relative; background:#F5F2EC; overflow:hidden;">
+    <div data-hero-bg style="position:absolute; inset:0; overflow:hidden; pointer-events:none;"></div>
+    <div data-hero-blob style="position:absolute; right:-14%; top:-8%; width:min(62vw,760px); height:min(62vw,760px); border-radius:50%; background:rgba(195,40,40,.10);"></div>
+    <div data-hero-grid style="position:relative; z-index:2; max-width:1320px; margin:0 auto; padding:122px 22px 48px; display:grid; grid-template-columns:1fr; gap:clamp(28px,4vw,66px); align-items:center;">
+      <div data-hero-photo data-reveal style="display:none; position:relative; border-radius:32px; overflow:hidden; background:#1C2422;">
+        <img src="fatmir-hero-photo.webp" alt="Fatmir Adzaj mit dem Südwestfalenaward" style="display:block; width:100%; height:100%; object-fit:cover; object-position:50% 32%;">
+        <div style="position:absolute; left:22px; bottom:22px; display:inline-flex; align-items:center; gap:9px; padding:9px 16px; border-radius:999px; background:rgba(245,242,236,.92); font-size:.9rem; font-weight:600; color:#14181A;">
+          <span style="width:7px; height:7px; border-radius:50%; background:#C32828;"></span> Bester Onlineshop, Südwestfalenaward
+        </div>
+      </div>
+      <div data-hero-text>
+        <h1 data-reveal style="margin:0 0 22px; font-size:clamp(2.9rem, 6.6vw, 5.4rem); line-height:.94; letter-spacing:-.035em; text-wrap:balance;">
+          Wer dich nicht kennt,<br>
+<span data-masked style="position:relative; display:block; color:#FFFFFF; filter:drop-shadow(0 6px 22px rgba(20,24,26,.62)) drop-shadow(0 1px 3px rgba(20,24,26,.72)) drop-shadow(0 0 1px rgba(20,24,26,.9));"><span data-masked-measure><span data-mw style="display:inline-block; white-space:pre;">kauft<i data-mb style="display:inline-block; width:0; height:0;"></i></span> <span data-mw style="display:inline-block; white-space:pre;">woanders.<i data-mb style="display:inline-block; width:0; height:0;"></i></span></span><svg data-masked-defs aria-hidden="true" focusable="false" style="position:absolute; width:0; height:0; overflow:hidden;"><defs><clipPath id="mh-verkaufen" clipPathUnits="userSpaceOnUse"></clipPath></defs></svg><span data-masked-reveal style="position:absolute; inset:0; display:none; pointer-events:none; clip-path:url(#mh-verkaufen);"><span data-masked-media style="position:absolute; inset:0; display:block; will-change:transform; filter:saturate(1.25) contrast(1.08);"><img src="fatmir-hero-photo.webp" alt="" draggable="false" style="display:block; width:100%; height:100%; object-fit:cover;"><span style="position:absolute; inset:0; background:linear-gradient(96deg, rgba(255,255,255,.9), rgba(255,255,255,.72));"></span></span></span></span>
+        </h1>
+        <p data-reveal style="margin:0 0 16px; max-width:42ch; font-size:clamp(1.08rem,1.5vw,1.32rem); line-height:1.6; color:#20262A;">
+          Keine Agentur, keine Theorie. Ich steh mit meinem Namen dafür und beweise es jeden Tag.
+        </p>
+        <p data-reveal style="margin:0 0 30px; font-family:'Bricolage Grotesque', 'Karla', sans-serif; font-size:clamp(1.15rem,1.7vw,1.45rem); font-weight:700; letter-spacing:-.02em; line-height:1.3; color:#C32828;">
+          Nicht lange schnacken. Machen.
+        </p>
+        <div data-reveal style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+          <a href="kontakt/" data-specular data-line="#CFE3DE" data-base="#0A2422" data-magnet style="position:relative; display:inline-flex; align-items:center; justify-content:center; min-height:58px; padding:17px 34px; border-radius:999px; background:#C32828; color:#F5F2EC; font-size:1.05rem; font-weight:600; transition:transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease;"><span data-specular-fx style="position:absolute; inset:-20px; pointer-events:none; z-index:1;"></span><span style="position:relative; z-index:2;">Jetzt sichtbar werden!</span></a>
+          <a href="#social-selling" data-magnet style="display:inline-flex; align-items:center; justify-content:center; min-height:58px; padding:17px 28px; border-radius:999px; border:1.5px solid rgba(20,24,26,.3); color:#14181A; font-size:1.05rem; font-weight:600; transition:transform .3s cubic-bezier(.25,.46,.45,.94), border-color .3s ease;">Was ich mache</a>
+        </div>
+        <dl class="facts" data-reveal>
+          <div><dt>13+</dt><dd>Jahre im Geschäft</dd></div>
+          <div><dt>100+</dt><dd>Shops gebaut</dd></div>
+          <div><dt>100+</dt><dd>Partner skaliert</dd></div>
+          <div><dt>4×</dt><dd>ausgezeichnet</dd></div>
+        </dl>
+      </div>
+      <div data-hero-portrait data-reveal style="position:relative;">
+        <img src="fatmir-hero-photo.webp" alt="Fatmir Adzaj mit dem Suedwestfalenaward" style="position:relative; display:block; width:100%; border-radius:26px; height:auto;">
+      </div>
+    </div>
+  </section>
+
+  <section class="pa" aria-labelledby="pa-h">
+    <div class="wrap">
+      <h2 id="pa-h" class="pa-h">Offizielle Partneragentur auf den Plattformen, auf denen heute verkauft wird.</h2>
+      <ul class="pa-grid" data-in>
+        <li class="pa-cell" style="--i:0">
+          <svg class="pa-logo" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"></path></svg>
+          <div><span class="pa-name">TikTok</span><span class="pa-role">Partneragentur</span></div>
+        </li>
+        <li class="pa-cell" style="--i:1">
+          <svg class="pa-logo" viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="9" fill="currentColor"></rect><text x="20" y="18.2" text-anchor="middle" font-family="Bricolage V, Bricolage Grotesque, sans-serif" font-weight="800" font-size="12.5" letter-spacing="-.4" fill="var(--paper)">TE</text><text x="20" y="31" text-anchor="middle" font-family="Bricolage V, Bricolage Grotesque, sans-serif" font-weight="800" font-size="12.5" letter-spacing="-.4" fill="var(--paper)">MU</text></svg>
+          <div><span class="pa-name">Temu</span><span class="pa-role">Partneragentur</span></div>
+        </li>
+        <li class="pa-cell" style="--i:2">
+          <svg class="pa-logo" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"></path></svg>
+          <div><span class="pa-name">Shopify</span><span class="pa-role">Partneragentur</span></div>
+        </li>
+        <li class="pa-cell" style="--i:3">
+          <svg class="pa-logo" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 01-10.951-.577 17.88 17.88 0 01-5.43-3.35c-.1-.074-.151-.15-.151-.22 0-.047.021-.09.051-.13zm6.565-6.218c0-1.005.247-1.863.743-2.577.495-.71 1.17-1.25 2.04-1.615.796-.335 1.756-.575 2.912-.72.39-.046 1.033-.103 1.92-.174v-.37c0-.93-.105-1.558-.3-1.875-.302-.43-.78-.65-1.44-.65h-.182c-.48.046-.896.196-1.246.46-.35.27-.575.63-.675 1.096-.06.3-.206.465-.435.51l-2.52-.315c-.248-.06-.372-.18-.372-.39 0-.046.007-.09.022-.15.247-1.29.855-2.25 1.82-2.88.976-.616 2.1-.975 3.39-1.05h.54c1.65 0 2.957.434 3.888 1.29.135.15.27.3.405.48.12.165.224.314.283.45.075.134.15.33.195.57.06.254.105.42.135.51.03.104.062.3.076.615.01.313.02.493.02.553v5.28c0 .376.06.72.165 1.036.105.313.21.54.315.674l.51.674c.09.136.136.256.136.36 0 .12-.06.226-.18.314-1.2 1.05-1.86 1.62-1.963 1.71-.165.135-.375.15-.63.045a6.062 6.062 0 01-.526-.496l-.31-.347a9.391 9.391 0 01-.317-.42l-.3-.435c-.81.886-1.603 1.44-2.4 1.665-.494.15-1.093.227-1.83.227-1.11 0-2.04-.343-2.76-1.034-.72-.69-1.08-1.665-1.08-2.94l-.05-.076zm3.753-.438c0 .566.14 1.02.425 1.364.285.34.675.512 1.155.512.045 0 .106-.007.195-.02.09-.016.134-.023.166-.023.614-.16 1.08-.553 1.424-1.178.165-.28.285-.58.36-.91.09-.32.12-.59.135-.8.015-.195.015-.54.015-1.005v-.54c-.84 0-1.484.06-1.92.18-1.275.36-1.92 1.17-1.92 2.43l-.035-.02zm9.162 7.027c.03-.06.075-.11.132-.17.362-.243.714-.41 1.05-.5a8.094 8.094 0 011.612-.24c.14-.012.28 0 .41.03.65.06 1.05.168 1.172.33.063.09.099.228.099.39v.15c0 .51-.149 1.11-.424 1.8-.278.69-.664 1.248-1.156 1.68-.073.06-.14.09-.197.09-.03 0-.06 0-.09-.012-.09-.044-.107-.12-.064-.24.54-1.26.806-2.143.806-2.64 0-.15-.03-.27-.087-.344-.145-.166-.55-.257-1.224-.257-.243 0-.533.016-.87.046-.363.045-.7.09-1 .135-.09 0-.148-.014-.18-.044-.03-.03-.036-.047-.02-.077 0-.017.006-.03.02-.063v-.06z"></path></svg>
+          <div><span class="pa-name">Amazon</span><span class="pa-role">Partneragentur</span></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="stage" id="social-selling" aria-labelledby="stage-h">
+    <div class="stage-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="statement" data-fill>Schluss mit Geld verbrennen. Zeit, es zu verdienen.</p>
+
+      <div class="stage-grid">
+        <div>
+          <h2 id="stage-h" class="stage-h">Social Selling &amp; TikTok&nbsp;Shop</h2>
+          <p class="stage-lead">Ob Produkt oder Dienstleistung: Verkauft wird heute in den sozialen Netzwerken. So eine Revolution gibt es nur alle 10 bis 15 Jahre. Die meisten schlafen noch. Wer jetzt einsteigt, gewinnt.</p>
+          <p class="stage-explain"><strong>Kurz erklärt:</strong> Früher Teleshopping im Fernsehen, heute Social Selling auf dem Handy. Ob per Livestream, Video oder Shop in der App: Die Leute fragen direkt nach und kaufen oder buchen sofort.</p>
+          <p class="stage-text">Das gilt für Händler genauso wie für Coaches, Berater und Dienstleister, denn Menschen kaufen von Menschen. Als TikTok Partner, Seller und Creator mit mehreren eigenen Kanälen kenne ich das Geschäft von innen.</p>
+        </div>
+        <figure class="live" data-live>
+          <img src="neu-live.webp" width="1100" height="1366" alt="Illustration: Fatmir hält ein Produkt in die Kamera eines Smartphones und verkauft live." loading="lazy">
+          <div aria-hidden="true">
+            <span class="live-pill"><i></i>Live</span>
+            <div class="hearts" data-hearts></div>
+            <div class="live-card">
+              <span class="toast" data-toast><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Neue Bestellung</span>
+              <ul class="chat" data-chat></ul>
+              <div class="buy">
+                <span class="buy-thumb"></span>
+                <span class="buy-t">Dein Produkt<small>oder dein Termin</small></span>
+                <span class="buy-btn" data-buy>Kaufen</span>
+              </div>
+            </div>
+          </div>
+        </figure>
+      </div>
+
+      <div class="offer">
+        <p class="offer-h">Du hast ein Produkt oder eine Dienstleistung? Ich bringe die Käufer.</p>
+        <ul class="offer-grid" data-in>
+          <li style="--i:0"><span>Strategie</span></li>
+          <li style="--i:1"><span>Technik</span></li>
+          <li style="--i:2"><span>Content</span></li>
+          <li style="--i:3"><span>Livestream</span></li>
+        </ul>
+        <p class="offer-foot"><strong>Alles aus einer Hand.</strong> Nicht vom Hörensagen: Ich mach's selbst, jeden Tag.</p>
+        <div class="stage-cta">
+          <a href="kontakt/" class="btn btn-red" data-magnet>Termin buchen</a>
+          <a href="#coaching" class="link">Du willst es selbst lernen? Platz im Social Selling Coaching sichern</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="leistungen" aria-labelledby="more-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <h2 id="more-h">Die anderen Hebel</h2>
+        <p>Ich setz genau die Hebel ein, die in deinem Markt tatsächlich ziehen.</p>
+      </div>
+      <article class="more-row">
+        <h3>Temu &amp; Shopify Partner</h3>
+        <div class="more-body">
+          <p>Dein Shop bekommt eine Strategie statt Einzelaktionen: Sortiment, Preise, Wiederkauf, Marktplätze. Ich kenne beide Seiten, Verkäufer und Plattformpartner.</p>
+          <p>Wer früh auf Temu ist, sichert sich Bewertungen, Reichweite und Platzierungen. Diesen Vorsprung kann man sich später nicht mehr kaufen.</p>
+        </div>
+        <img class="more-illu" src="neu-handel.webp" width="1000" height="747" alt="" loading="lazy">
+      </article>
+      <article class="more-row">
+        <h3>Performance Marketing</h3>
+        <div class="more-body">
+          <p>Kein Geld mehr verbrennen bei Meta, Google und TikTok. Egal ob Bestellungen im Shop oder Anfragen für deine Dienstleistung: Jeder Euro Werbebudget muss sich lohnen.</p>
+          <div class="proof">
+            <img src="partner-brustbizeps.png" width="803" height="166" alt="Brustbizeps">
+            <p>Ich bin CEO von Brustbizeps. Was ich dir empfehle, läuft gerade in meinem eigenen Shop.</p>
+          </div>
+        </div>
+        <img class="more-illu" src="neu-marketing.webp" width="1000" height="747" alt="" loading="lazy">
+      </article>
+    </div>
+  </section>
+
+  <section class="sec voices" id="stimmen" aria-labelledby="voices-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <h2 id="voices-h">Stimmen aus der Praxis</h2>
+        <p>Von Unternehmern, die mit Fatmir verkauft haben.</p>
+      </div>
+      <figure class="voice-lead">
+        <figcaption class="who">
+          <img src="partner-asabi.png" width="497" height="220" alt="Asabi">
+          <span><strong>Asabi, Geschäftsführung</strong>deutschlandweit in Drogeriemärkten platziert</span>
+        </figcaption>
+        <blockquote><span class="qm" aria-hidden="true">„</span>Fatmir und sein Team haben unsere Marke auf ein neues Level gebracht. Die Sichtbarkeit, die sie für Asabi aufgebaut haben, ist beeindruckend. Heute sind wir in allen relevanten Drogeriemärkten Deutschlands vertreten, von Pieper bis Douglas. Das war kein Zufall. Das war Strategie, Einsatz und echtes Commitment. Danke Fatmir, danke Team.“</blockquote>
+      </figure>
+      <div class="voice-row">
+        <figure class="voice">
+          <p>„In kürzester Zeit hatten wir eine Onlinepräsenz und ein Marketing, das funktioniert. Vorher machten wir online fast keinen Umsatz, heute einen richtig guten.“</p>
+          <footer><span>Onlineshop, Mode</span><img src="partner-nosheer.png" width="800" height="138" alt="NoSheer"></footer>
+        </figure>
+        <figure class="voice">
+          <p>„Fatmir hat unser Live Shopping von null aufgebaut. Der zweite Stream brachte 300 Bestellungen an einem gewöhnlichen Dienstagabend.“</p>
+          <footer><span>Onlinehandel, 2 Monate</span><img src="partner-biyon.png" alt="Biyon"></footer>
+        </figure>
+        <figure class="voice">
+          <p>„Zwölf Bewerbungen in vier Wochen. Davor hatten wir ein halbes Jahr lang keine einzige brauchbare bekommen.“</p>
+          <footer><span>Dienstleister, Personalgewinnung</span><img src="partner-crossfit-dortmund.png" alt="CrossFit Dortmund"></footer>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="fatmir" aria-labelledby="about-h">
+    <div class="wrap about-grid">
+      <figure class="about-photo">
+        <img src="fatmir-stage.webp" width="1069" height="1600" alt="Fatmir Adzaj auf der Bühne, mit Mikrofon vor rotem Vorhang" loading="lazy">
+        <figcaption><strong>Brustbizeps &amp; Geschmacksbombe:</strong> in 8 Monaten von der ersten Palette in über 60 Filialen bei Rewe und Edeka. Ohne Agentur.</figcaption>
+      </figure>
+      <div class="about-copy">
+        <h2 id="about-h" data-reveal>Ich red nicht nur drüber. Ich mach's.</h2>
+        <p>Dreimal von der Schule geflogen. Trotzdem Fachabi. Trotzdem Ausbildung. Trotzdem <strong>Fitnessfachwirt mit Schwerpunkt Marketing</strong>. Mir wurde nichts geschenkt, ich hab mir alles erkämpft. Genau das ist heute mein Vorteil.</p>
+        <p>Zu Bestzeiten hatte ich <strong>10 Filialen in unter 4 Jahren</strong> und 3 Fitnessstudios. Kurz vor Corona hab ich alles verkauft. Nicht weil ich musste, sondern weil ich gespürt hab, was kommt.</p>
+        <p>Parallel hab ich meine eigenen Marken aufgebaut, alles in Eigenregie. Allein in der Corona-Zeit hab ich über 45 Partner von offline zu online begleitet. Heute sind es <strong>über 100 Partner</strong>, die ich digitalisiert und skaliert habe, dazu über 100 gebaute Shops, mehr als 13 Jahre Praxis und ein Netzwerk, das trägt.</p>
+        <p class="claim">Ich bin keine typische Agentur. Ich stehe mit meinem Namen für meine Arbeit.</p>
+        <dl class="about-more">
+          <div><dt>Investor und Partner</dt><dd>Wenn ich an dich und deine Idee glaube, steig ich auch als Partner oder Investor ein und bring PS auf die Straße.</dd></div>
+          <div><dt>Mein Team</dt><dd>Jung und hungrig. Wir arbeiten gern mit neuen Werkzeugen, auch mit künstlicher Intelligenz.</dd></div>
+        </dl>
+        <div class="sign">
+          <p>„Gib alles, nur nicht auf.“</p>
+          <img src="logo-ink.png" width="900" height="655" alt="Unterschrift Fatmir">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec awards" id="auszeichnungen" aria-labelledby="awards-h">
+    <div class="wrap awards-grid">
+      <div>
+        <h2 id="awards-h" data-reveal>Vier Jahre in Folge ausgezeichnet</h2>
+        <ol class="award-list" data-in>
+          <li style="--i:0"><span class="yr">2026</span><span class="award-name">Südwestfalenaward</span></li>
+          <li style="--i:1"><span class="yr">2025</span><span class="award-name">Südwestfalenaward</span></li>
+          <li style="--i:2"><span class="yr">2024</span><span class="award-name">Südwestfalenaward</span></li>
+          <li style="--i:3"><span class="yr">2023</span><span class="award-name">Bester Onlineshop</span></li>
+        </ol>
+      </div>
+      <img class="awards-illu" src="neu-award.webp" width="1200" height="896" alt="Illustration: Fatmir mit erhobenem Arm und dem Award in der Hand" loading="lazy">
+    </div>
+  </section>
+
+  <section class="sec" id="kunden" aria-labelledby="clients-h">
+    <div class="wrap clients-grid">
+      <div data-reveal>
+        <h2 id="clients-h">Partner, die heute gefunden werden</h2>
+        <p>Vom Familienbetrieb bis zur Erlebnistherme: Handel, Parfum, Dienstleistung, Sport, Industrie.</p>
+      </div>
+      <div data-spiral style="position:relative; height:clamp(400px,48vw,540px); overflow:hidden; isolation:isolate; touch-action:pan-x; cursor:grab; perspective:1000px; -webkit-mask-image:linear-gradient(to bottom, transparent, #000 13%, #000 87%, transparent), linear-gradient(to right, transparent, #000 9%, #000 91%, transparent); -webkit-mask-composite:source-in; mask-image:linear-gradient(to bottom, transparent, #000 13%, #000 87%, transparent), linear-gradient(to right, transparent, #000 9%, #000 91%, transparent); mask-composite:intersect;">
+        <div data-spiral-stage style="position:absolute; inset:0; transform-style:preserve-3d;">
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-brustbizeps.png" alt="Brustbizeps" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-nosheer.png" alt="NoSheer" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-hh-simonsen.png" alt="HH Simonsen" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-biyon.png" alt="Biyon" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-ormma.png" alt="Ormma" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-kuehnundpartner.png" alt="Kühn und Partner" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-inox.png" alt="Inox Vertrieb" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-maximare.png" alt="Maximare" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-crossfit-dortmund.png" alt="CrossFit Dortmund" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-losfizio.png" alt="Los Fizio Köln" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-glueckauf.png" alt="Glückauf Essen" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-ihk-hagen.png" alt="SIHK Hagen" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-asabi.png" alt="Asabi" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-nuhi.png" alt="Nuhi Paris" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+          <div data-spiral-item style="position:absolute; top:50%; left:50%; display:grid; place-items:center; width:164px; height:104px; padding:14px 17px; border-radius:16px; background:#FDFBF6; border:1px solid rgba(20,24,26,.1); box-shadow:0 14px 34px rgba(20,24,26,.09); overflow:hidden; backface-visibility:hidden; will-change:transform, opacity, filter;"><img src="partner-06.png" alt="Partner" style="display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; user-select:none;" draggable="false"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec steps" id="ablauf" aria-labelledby="steps-h">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <h2 id="steps-h">So arbeiten wir zusammen</h2>
+        <p>Drei Schritte, und bei jedem bin ich selbst dabei.</p>
+      </div>
+      <div class="track" data-steps>
+        <span class="rail" aria-hidden="true"><i></i></span>
+        <ol class="track-list">
+        <li class="step"><span class="step-dot" aria-hidden="true"></span><span class="step-n">1</span><h3>30 Minuten Gespräch</h3><p>Kein Fragebogen, kein Callcenter. Ich ruf dich persönlich an und wir schauen, ob es passt.</p></li>
+        <li class="step"><span class="step-dot" aria-hidden="true"></span><span class="step-n">2</span><h3>Dein Plan</h3><p>Welche Kanäle zuerst, welche Inhalte, welches Budget und woran wir Erfolg messen. Ein Plan, den man umsetzt, kein 50-Seiten-Dokument.</p></li>
+        <li class="step"><span class="step-dot" aria-hidden="true"></span><span class="step-n">3</span><h3>Umsetzung, gemeinsam</h3><p>Ich leg selbst Hand an, auch mal vor Ort bei dir. Jeden Monat schauen wir zusammen auf die Zahlen.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showKurs }}" hint-placeholder-val="{{ true }}">
+  <section class="sec coach" id="coaching" aria-labelledby="coach-h">
+    <div class="wrap coach-grid">
+      <div>
+        <h2 id="coach-h" data-reveal>Social Selling Coaching</h2>
+        <p class="coach-lead">Social Selling heißt verkaufen über soziale Netzwerke, live, per Video oder direkt im Shop der App. Du zeigst, was du anbietest, die Leute stellen Fragen und kaufen oder buchen sofort.</p>
+        <dl class="coach-dl">
+          <div><dt>Für wen</dt><dd>Für alle, die über Social Media verkaufen wollen: Coaches, Berater, Dienstleister, Onlinehändler, Unternehmen mit eigenem Team und Einsteiger. Vorwissen brauchst du nicht.</dd></div>
+          <div><dt>Was du lernst</dt><dd>Kanal aufbauen, Inhalte und Livesendungen planen, Technik einrichten, vor der Kamera sicher auftreten, Angebote richtig setzen und aus Zuschauern Kunden machen.</dd></div>
+          <div><dt>Danach kannst du</dt><dd>Selbst Inhalte und Livesendungen machen und darüber verkaufen, egal ob Produkt, Dienstleistung oder Coaching. Und das ohne mich im Raum.</dd></div>
+        </dl>
+        <p class="soon"><i aria-hidden="true"></i>Startet bald. Die Warteliste ist offen.</p>
+          <form onSubmit="{{ joinWaitlist }}" style="display:flex; flex-wrap:wrap; gap:10px; max-width:520px;">
+            <div aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
+              <label>Website<input data-waitlist-hp type="text" tabindex="-1" autocomplete="off" name="website" value=""></label>
+            </div>
+            <input data-waitlist type="email" required placeholder="Deine Adresse für die Warteliste" style="flex:1 1 230px; min-height:54px; padding:15px 20px; border-radius:999px; border:1.5px solid rgba(20,24,26,.18); background:#F5F2EC; font-family:inherit; font-size:1rem; color:#14181A;">
+            <button type="submit" data-magnet style="min-height:54px; padding:15px 28px; border-radius:999px; border:none; background:#14181A; color:#F5F2EC; font-family:inherit; font-size:1rem; font-weight:600; cursor:pointer; transition:transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease;">Platz vormerken</button>
+            <div data-waitlist-msg style="flex:1 1 100%; font-size:.95rem; font-weight:500; color:#A02121; min-height:1.2em;"></div>
+            <p style="flex:1 1 100%; margin:2px 0 0; font-size:.85rem; line-height:1.55; color:#57514D;">Mit dem Absenden willigst du ein, dass wir deine Adresse für diese eine Nachricht speichern. Mehr dazu im <a href="datenschutz/" style="color:#57514D; text-decoration:underline;">Datenschutz</a>.</p>
+          </form>
+          <div data-waitlist-done style="display:none; align-items:center; gap:18px; max-width:520px; padding:20px 24px; border-radius:24px; background:#EBE7DE;">
+            <span data-waitlist-badge style="position:relative; flex:none; display:inline-flex; align-items:center; justify-content:center; width:54px; height:54px; border-radius:50%; background:#C32828;">
+              <span data-waitlist-ring style="position:absolute; inset:0; border-radius:50%; border:2px solid #C32828; opacity:0;"></span>
+              <svg viewBox="0 0 32 32" aria-hidden="true" style="position:relative; width:28px; height:28px;"><path data-waitlist-check d="M8 16.6 L13.6 22.2 L24.2 10.4" fill="none" stroke="#F5F2EC" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:34; stroke-dashoffset:34;"></path></svg>
+            </span>
+            <div>
+              <div style="font-family:'Bricolage Grotesque','Karla',sans-serif; font-size:1.15rem; font-weight:700; letter-spacing:-.02em; color:#14181A;">Steht. Du bist auf der Warteliste.</div>
+              <div style="margin-top:4px; font-size:.97rem; line-height:1.55; color:#4B534F;">Fatmir meldet sich, bevor es losgeht. Keine Newsletterflut, ein Hinweis.</div>
+            </div>
+          </div>
+      </div>
+      <img class="coach-illu" src="neu-coaching.webp" width="1000" height="747" alt="" loading="lazy">
+    </div>
+  </section>
+  </sc-if>
+
+  <section class="sec" id="faq" aria-labelledby="faq-h">
+    <div class="wrap faq-grid">
+      <div class="faq-side">
+        <h2 id="faq-h">Häufige Fragen</h2>
+        <p>Was hier nicht steht, klären wir im Gespräch.</p>
+        <a href="kontakt/" class="link">Termin buchen</a>
+      </div>
+      <div data-faq>
+        <div style="border-top:1px solid rgba(20,24,26,.14);">
+          <button type="button" aria-expanded="false" onClick="{{ toggleFaq }}" style="appearance:none; width:100%; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:24px 4px; background:none; border:none; cursor:pointer; text-align:left; font-family:'Bricolage Grotesque', 'Karla', sans-serif; font-size:clamp(1.08rem,2vw,1.3rem); font-weight:600; letter-spacing:-.02em; color:#14181A; min-height:60px;">
+            <span>Was kostet die Zusammenarbeit?</span>
+            <span data-faq-icon style="flex:none; font-size:1.5rem; font-weight:400; color:#C32828; transition:transform .3s ease;">+</span>
+          </button>
+          <div data-faq-panel style="display:grid; grid-template-rows:0fr; transition:grid-template-rows .32s ease;"><div style="overflow:hidden;"><p style="margin:0 0 26px; font-size:1.06rem; line-height:1.7; color:#4B534F;">Je nach Umfang starten wir ab 1.500 €. Im Gespräch weißt du in 30 Minuten genau, was du bekommst. Ohne Überraschungen.</p></div></div>
+        </div>
+        <div style="border-top:1px solid rgba(20,24,26,.14);">
+          <button type="button" aria-expanded="false" onClick="{{ toggleFaq }}" style="appearance:none; width:100%; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:24px 4px; background:none; border:none; cursor:pointer; text-align:left; font-family:'Bricolage Grotesque', 'Karla', sans-serif; font-size:clamp(1.08rem,2vw,1.3rem); font-weight:600; letter-spacing:-.02em; color:#14181A; min-height:60px;">
+            <span>Wann sehe ich erste Ergebnisse?</span>
+            <span data-faq-icon style="flex:none; font-size:1.5rem; font-weight:400; color:#C32828; transition:transform .3s ease;">+</span>
+          </button>
+          <div data-faq-panel style="display:grid; grid-template-rows:0fr; transition:grid-template-rows .32s ease;"><div style="overflow:hidden;"><p style="margin:0 0 26px; font-size:1.06rem; line-height:1.7; color:#4B534F;">Erste Signale meist in vier bis sechs Wochen. Belastbare Zahlen nach einem Quartal. Fatmir und sein Team messen von Anfang an mit.</p></div></div>
+        </div>
+        <div style="border-top:1px solid rgba(20,24,26,.14);">
+          <button type="button" aria-expanded="false" onClick="{{ toggleFaq }}" style="appearance:none; width:100%; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:24px 4px; background:none; border:none; cursor:pointer; text-align:left; font-family:'Bricolage Grotesque', 'Karla', sans-serif; font-size:clamp(1.08rem,2vw,1.3rem); font-weight:600; letter-spacing:-.02em; color:#14181A; min-height:60px;">
+            <span>Arbeitest du mit jeder Branche?</span>
+            <span data-faq-icon style="flex:none; font-size:1.5rem; font-weight:400; color:#C32828; transition:transform .3s ease;">+</span>
+          </button>
+          <div data-faq-panel style="display:grid; grid-template-rows:0fr; transition:grid-template-rows .32s ease;"><div style="overflow:hidden;"><p style="margin:0 0 26px; font-size:1.06rem; line-height:1.7; color:#4B534F;">Fast jede Branche kann über Social Media verkaufen. Wie genau, klären wir im Gespräch.</p></div></div>
+        </div>
+        <div style="border-top:1px solid rgba(20,24,26,.14); border-bottom:1px solid rgba(20,24,26,.14);">
+          <button type="button" aria-expanded="false" onClick="{{ toggleFaq }}" style="appearance:none; width:100%; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:24px 4px; background:none; border:none; cursor:pointer; text-align:left; font-family:'Bricolage Grotesque', 'Karla', sans-serif; font-size:clamp(1.08rem,2vw,1.3rem); font-weight:600; letter-spacing:-.02em; color:#14181A; min-height:60px;">
+            <span>Bist du wirklich bei jedem Call dabei?</span>
+            <span data-faq-icon style="flex:none; font-size:1.5rem; font-weight:400; color:#C32828; transition:transform .3s ease;">+</span>
+          </button>
+          <div data-faq-panel style="display:grid; grid-template-rows:0fr; transition:grid-template-rows .32s ease;"><div style="overflow:hidden;"><p style="margin:0 0 26px; font-size:1.06rem; line-height:1.7; color:#4B534F;">Ja. Kein Account Manager, kein Junior. Ich bin dabei, von Angesicht zu Angesicht. Das ist mein Versprechen.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gespraech" style="position:relative; overflow:hidden; background:#C32828; color:#F5F2EC;">
+    <div data-cta-bg style="position:absolute; inset:0; overflow:hidden; pointer-events:none;"></div>
+    <div class="cta-in">
+      <h2 data-reveal>Dein Markt soll dich kennen, bevor du anrufst.</h2>
+      <div class="host" data-reveal><img src="fatmir-avatar.webp" width="240" height="240" alt=""><p><strong>Du sprichst direkt mit Fatmir.</strong>Wir schauen gemeinsam, welcher Hebel bei dir zieht.</p></div>
+      <a href="kontakt/" data-booking data-specular data-line="#FFFFFF" data-base="#7E948E" data-magnet data-reveal style="position:relative; display:inline-flex; align-items:center; justify-content:center; min-height:62px; padding:19px 42px; border-radius:999px; background:#F5F2EC; color:#C32828; font-size:1.1rem; font-weight:600; margin-top:6px; transition:transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease;"><span data-specular-fx style="position:absolute; inset:-20px; pointer-events:none; z-index:1;"></span><span style="position:relative; z-index:2;">Termin buchen</span></a>
+      <ul class="cta-facts" data-reveal><li>30 Minuten</li><li>Kostenlos</li><li>Unverbindlich</li></ul>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-top">
+        <p>Personal Branding und Sichtbarkeit von jemandem, der es selbst bewiesen hat.</p>
+        <nav class="foot-col" aria-label="Seite">
+          <span>Seite</span>
+          <a href="#social-selling">Social Selling</a>
+          <a href="#leistungen">Leistungen</a>
+          <a href="#stimmen">Stimmen</a>
+          <a href="#fatmir">Über Fatmir</a>
+          <a href="#coaching">Coaching</a>
+        </nav>
+        <nav class="foot-col" aria-label="Kontakt und Rechtliches">
+          <span>Kontakt</span>
+          <a href="kontakt/">Termin buchen</a>
+          <a href="impressum/">Impressum</a>
+          <a href="datenschutz/">Datenschutz</a>
+          <a href="#" data-consent-open>Cookie Einstellungen</a>
+        </nav>
+      </div>
+      <div class="foot-mark"><img src="logo-white.png" width="1600" height="803" alt="Fatmir Adzaj"></div>
+      <div class="foot-bottom"><span>© 2026 Fatmir Adzaj</span><span>Dortmund</span></div>
+    </div>
+  </footer>
+
+  <div data-mobile-cta style="position:fixed; left:0; right:0; bottom:0; z-index:40; display:none; align-items:center; gap:10px; padding:12px 14px; background:rgba(20,24,26,.94); backdrop-filter:blur(12px); transform:translateY(120%); transition:transform .4s cubic-bezier(.25,.46,.45,.94);">
+    <a href="kontakt/" style="flex:1; display:inline-flex; align-items:center; justify-content:center; min-height:50px; border-radius:999px; background:#C32828; color:#F5F2EC; font-size:1rem; font-weight:600;">Jetzt sichtbar werden!</a>
+    <button type="button" onClick="{{ dismissMobileCta }}" aria-label="Leiste schließen" style="flex:none; width:44px; height:44px; border-radius:50%; border:1px solid rgba(245,242,236,.24); background:none; color:rgba(245,242,236,.7); font-size:1.2rem; cursor:pointer;">×</button>
+  </div>
+
+</div>
+</x-dc>
+<!-- Logik (Shader, Spirale, Formular, FAQ) kommt beim Bauen aus Main.dc.html -->
+<script data-neu-script>
+(function () {
+  var doc = document;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
+
+  // Einblenden auf Sicht: [data-in] bekommt .is-in, die Choreografie steht im CSS
+  var ins = Array.prototype.slice.call(doc.querySelectorAll('[data-in]'));
+  if (!hasIO || reduce) {
+    ins.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('is-in');
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+    ins.forEach(function (el) { io.observe(el); });
+  }
+
+  // Der Satz im dunklen Kapitel füllt sich Wort für Wort beim Scrollen
+  var fill = doc.querySelector('[data-fill]');
+  var words = [];
+  if (fill) {
+    var sentence = fill.textContent.trim();
+    fill.setAttribute('aria-label', sentence);
+    fill.innerHTML = sentence.split(/\s+/).map(function (w) {
+      return '<span class="w" aria-hidden="true">' + w + '</span>';
+    }).join(' ');
+    words = Array.prototype.slice.call(fill.querySelectorAll('.w'));
+    if (reduce) words.forEach(function (w) { w.classList.add('on'); });
+  }
+
+  // Zeitleiste im Ablauf
+  var track = doc.querySelector('[data-steps]');
+  var steps = track ? Array.prototype.slice.call(track.querySelectorAll('.step')) : [];
+
+  var ticking = false;
+  function frame() {
+    ticking = false;
+    var vh = window.innerHeight;
+    if (words.length && !reduce) {
+      var r = fill.getBoundingClientRect();
+      var p = (vh * 0.86 - r.top) / (vh * 0.5);
+      p = Math.max(0, Math.min(1, p));
+      var n = Math.round(p * words.length);
+      words.forEach(function (w, i) { w.classList.toggle('on', i < n); });
+    }
+    if (track) {
+      var t = track.getBoundingClientRect();
+      var q = reduce ? 1 : (vh * 0.78 - t.top) / (t.height + vh * 0.2);
+      q = Math.max(0, Math.min(1, q));
+      track.style.setProperty('--p', q.toFixed(3));
+      steps.forEach(function (s, i) { s.classList.toggle('on', q > i / steps.length + 0.02); });
+    }
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  frame();
+
+  // Live-Moment: Chat, Herzen und Bestellungen laufen nur, solange man hinsieht
+  var live = doc.querySelector('[data-live]');
+  if (!live) return;
+  var chat = live.querySelector('[data-chat]');
+  var hearts = live.querySelector('[data-hearts]');
+  var toast = live.querySelector('[data-toast]');
+  var buy = live.querySelector('[data-buy]');
+  var MSG = [
+    ['Lena', 'Gibt es das auch in Größe M?'],
+    ['Murat', 'Wie schnell ist der Versand?'],
+    ['Sandra', 'Hab gerade bestellt!'],
+    ['Jonas', 'Kann ich auch einen Termin buchen?'],
+    ['Aylin', 'Zeig bitte nochmal die Rückseite'],
+    ['Kai', 'Bestellt, danke dir!']
+  ];
+  var HEART = '<svg viewBox="0 0 24 24"><path d="M12 21s-7.4-4.5-9.5-9.1C1 8.4 3.1 4.5 6.8 4.5c2.1 0 3.6 1.2 5.2 3.2 1.6-2 3.1-3.2 5.2-3.2 3.7 0 5.8 3.9 4.3 7.4C19.4 16.5 12 21 12 21z"></path></svg>';
+  var k = 0;
+  function addMsg() {
+    var m = MSG[k++ % MSG.length];
+    var li = doc.createElement('li');
+    li.innerHTML = '<b>' + m[0] + '</b>' + m[1];
+    chat.appendChild(li);
+    while (chat.children.length > 4) chat.removeChild(chat.firstElementChild);
+  }
+  function heart() {
+    var h = doc.createElement('span');
+    h.className = 'heart';
+    h.style.setProperty('--x', Math.round(Math.random() * 56 - 28) + 'px');
+    h.style.setProperty('--s', (0.65 + Math.random() * 0.6).toFixed(2));
+    h.innerHTML = HEART;
+    hearts.appendChild(h);
+    h.addEventListener('animationend', function () { h.remove(); });
+  }
+  function order() {
+    toast.classList.remove('show'); void toast.offsetWidth; toast.classList.add('show');
+    buy.classList.remove('ping'); void buy.offsetWidth; buy.classList.add('ping');
+  }
+  for (var i = 0; i < 3; i++) addMsg();
+  if (reduce || !hasIO) return;
+
+  var timers = [];
+  var inView = false;
+  function start() {
+    if (timers.length) return;
+    timers.push(setInterval(addMsg, 2400), setInterval(heart, 480), setInterval(order, 5600));
+    setTimeout(order, 1400);
+  }
+  function stop() { timers.forEach(clearInterval); timers = []; }
+  new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { inView = en.isIntersecting; inView ? start() : stop(); });
+  }, { threshold: 0.25 }).observe(live);
+  doc.addEventListener('visibilitychange', function () {
+    if (doc.hidden) stop(); else if (inView) start();
+  });
+})();
+</script>
+</body>
+</html>
