@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Baut aus Main.dc.html die statische Seite fuer GitHub Pages.
+"""Baut die statische Seite fuer GitHub Pages.
 
-    python3 scripts/build-site.py
+    uv run --with pillow python scripts/build-site.py
 
 Ausgabe: docs/index.html, docs/kontakt/, docs/impressum/, docs/datenschutz/,
-docs/assets/, robots.txt und sitemap.xml.
+docs/alt/, docs/neu/ (Weiterleitung), docs/assets/, robots.txt und sitemap.xml.
 
-Die Startseite kommt aus Main.dc.html (Canvas-Syntax wird dabei uebersetzt),
-Navigation und Fuss werden fuer die Unterseiten daraus uebernommen, damit es
-keine zweite Quelle gibt. Rechtstexte stehen in scripts/site_pages.py,
-die Einwilligungsleiste in scripts/site_consent.py.
+Die Startseite kommt seit Oktober 2026 aus Neu.dc.html. Main.dc.html ist die
+alte Startseite: sie liegt archiviert unter /alt/ und liefert weiter die
+Seitenlogik (Component) sowie Navigation und Fuss der Unterseiten.
+Rechtstexte stehen in scripts/site_pages.py, die Einwilligungsleiste in
+scripts/site_consent.py.
 """
 import json
 from datetime import date
@@ -55,6 +56,8 @@ def subpage_chrome(html):
     html = html.replace('href="kontakt/"', 'href="../kontakt/"')
     html = html.replace('href="impressum/"', 'href="../impressum/"')
     html = html.replace('href="datenschutz/"', 'href="../datenschutz/"')
+    # die neue Startseite hat keinen Abschnitt #hebel mehr
+    html = html.replace('href="../#hebel"', 'href="../#social-selling"')
     return html
 
 
@@ -227,14 +230,18 @@ INDEX_TITLE = "TikTok Shop & Social Selling Partneragentur | Fatmir Adzaj"
 INDEX_DESC = ("Fatmir Adzaj aus Dortmund: offizielle TikTok, Temu, Shopify und Amazon "
               "Partneragentur. Social Selling, TikTok Shop und Performance Marketing aus einer Hand.")
 
-index_page = f"""<!DOCTYPE html>
+# alte Startseite: archiviert unter /alt/, nicht im Index und nicht in der Sitemap
+alt_body = body.replace('src="assets/', 'src="../assets/')
+for _p in ("kontakt/", "impressum/", "datenschutz/"):
+    alt_body = alt_body.replace(f'href="{_p}"', f'href="../{_p}"')
+alt_page = f"""<!DOCTYPE html>
 <html lang="de">
 <head>
-{head(INDEX_TITLE, INDEX_DESC, pg.SITE + "/", depth=0, ld=home_ld(body, pg.SITE + "/"), preload_img="fatmir-hero-photo.webp")}
+{head("Alte Startseite (Archiv) | Fatmir Adzaj", INDEX_DESC, pg.SITE + "/", robots="noindex, nofollow", depth=1, preload_img="fatmir-hero-photo.webp")}
 </head>
 <body>
-{body}
-{consent_markup(0)}
+{alt_body}
+{consent_markup(1)}
 <script>{INDEX_JS}</script>
 <script>{consent_script()}</script>
 </body>
@@ -331,7 +338,8 @@ try:
 except Exception as exc:  # pragma: no cover
     print("favicon uebersprungen:", exc)
 
-(OUT / "index.html").write_text(index_page, encoding="utf-8")
+(OUT / "alt").mkdir(parents=True, exist_ok=True)
+(OUT / "alt" / "index.html").write_text(alt_page, encoding="utf-8")
 (OUT / ".nojekyll").write_text("", encoding="utf-8")
 
 k = build_subpage(
@@ -360,44 +368,52 @@ t_danke = build_subpage(
     "Termin bestätigt. Was jetzt passiert und wie du das Gespräch vorbereitest.",
     pg.DANKE_MAIN, '"../kontakt/"', robots="noindex, follow")
 
-# Vorschau /neu/: zweite Startseite aus Neu.dc.html, gleiche Logik wie die Startseite
-# plus eigenes Skript, nicht in der Sitemap und nicht im Index
-NEU_SRC = ROOT / "Neu.dc.html"
-t_neu = 0
-if NEU_SRC.exists():
-    nsrc = NEU_SRC.read_text(encoding="utf-8")
-    n_style = re.search(r"<style>(.*?)</style>",
-                        re.search(r"<helmet>(.*?)</helmet>", nsrc, re.S).group(1), re.S).group(1)
-    n_body = re.search(r"<x-dc>(.*?)</x-dc>", nsrc, re.S).group(1)
-    n_body = re.sub(r"<helmet>.*?</helmet>", "", n_body, flags=re.S)
-    n_body = re.sub(r"<sc-if[^>]*>", "", n_body).replace("</sc-if>", "")
-    n_body = re.sub(r'\s*on(?:Click|Submit)="\{\{[^}]*\}\}"', "", n_body)
-    n_body = re.sub(r'src="([^"/:]+\.(?:png|jpe?g|webp|svg))"', r'src="../assets/\1"', n_body)
-    n_body = n_body.replace('<img src="../assets/fatmir-hero-photo.webp"', '<img fetchpriority="high" src="../assets/fatmir-hero-photo.webp"')
-    for p in ("kontakt/", "impressum/", "datenschutz/"):
-        n_body = n_body.replace(f'href="{p}"', f'href="../{p}"')
-    n_js = re.search(r"<script data-neu-script[^>]*>(.*?)</script>", nsrc, re.S).group(1)
-    n_pre = re.search(r"<script data-neu-before[^>]*>(.*?)</script>", nsrc, re.S)
-    start = "(function () {\n  var page = new Component("
-    assert INDEX_JS.count(start) == 1
-    neu_index_js = INDEX_JS.replace(start, (n_pre.group(1) if n_pre else "") + "\n" + start)
-    neu_page = f"""<!DOCTYPE html>
+# Startseite aus Neu.dc.html: gleiche Logik wie die alte Startseite plus eigenes Skript
+nsrc = (ROOT / "Neu.dc.html").read_text(encoding="utf-8")
+n_style = re.search(r"<style>(.*?)</style>",
+                    re.search(r"<helmet>(.*?)</helmet>", nsrc, re.S).group(1), re.S).group(1)
+n_body = re.search(r"<x-dc>(.*?)</x-dc>", nsrc, re.S).group(1)
+n_body = re.sub(r"<helmet>.*?</helmet>", "", n_body, flags=re.S)
+n_body = re.sub(r"<sc-if[^>]*>", "", n_body).replace("</sc-if>", "")
+n_body = re.sub(r'\s*on(?:Click|Submit)="\{\{[^}]*\}\}"', "", n_body)
+n_body = re.sub(r'src="([^"/:]+\.(?:png|jpe?g|webp|svg))"', r'src="assets/\1"', n_body)
+n_body = n_body.replace('<img src="assets/fatmir-hero-photo.webp"', '<img fetchpriority="high" src="assets/fatmir-hero-photo.webp"')
+n_js = re.search(r"<script data-neu-script[^>]*>(.*?)</script>", nsrc, re.S).group(1)
+n_pre = re.search(r"<script data-neu-before[^>]*>(.*?)</script>", nsrc, re.S)
+start = "(function () {\n  var page = new Component("
+assert INDEX_JS.count(start) == 1
+neu_index_js = INDEX_JS.replace(start, (n_pre.group(1) if n_pre else "") + "\n" + start)
+index_page = f"""<!DOCTYPE html>
 <html lang="de">
 <head>
-{head(INDEX_TITLE, INDEX_DESC, pg.SITE + "/neu/", robots="noindex, nofollow", depth=1, css=n_style, ld=home_ld(n_body, pg.SITE + "/neu/"), preload_img="fatmir-hero-photo.webp")}
+{head(INDEX_TITLE, INDEX_DESC, pg.SITE + "/", depth=0, css=n_style, ld=home_ld(n_body, pg.SITE + "/"), preload_img="fatmir-hero-photo.webp")}
 </head>
 <body>
 {n_body}
-{consent_markup(1)}
+{consent_markup(0)}
 <script>{neu_index_js}</script>
 <script>{n_js}</script>
 <script>{consent_script()}</script>
 </body>
 </html>
 """
-    (OUT / "neu").mkdir(parents=True, exist_ok=True)
-    (OUT / "neu" / "index.html").write_text(neu_page, encoding="utf-8")
-    t_neu = len(neu_page)
+(OUT / "index.html").write_text(index_page, encoding="utf-8")
+
+# /neu/ war der Vorschaulink und ist schon verschickt: leitet auf die Startseite
+(OUT / "neu").mkdir(parents=True, exist_ok=True)
+(OUT / "neu" / "index.html").write_text(f"""<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Fatmir Adzaj</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="{pg.SITE}/">
+<meta http-equiv="refresh" content="0; url=/">
+<script>location.replace("/" + location.hash);</script>
+</head>
+<body><a href="/">Weiter zur Startseite</a></body>
+</html>
+""", encoding="utf-8")
 
 # 404: GitHub Pages liefert docs/404.html für jede unbekannte Adresse aus,
 # deshalb stehen alle Pfade absolut
@@ -431,5 +447,5 @@ sitemap.append("</urlset>")
 
 size = sum(f.stat().st_size for f in ASSETS.rglob("*") if f.is_file())
 print(f"index {len(index_page)//1024} KB | kontakt {k//1024} KB | impressum {i//1024} KB | "
-      f"datenschutz {d//1024} KB | danke {t_danke//1024} KB | neu {t_neu//1024} KB | "
+      f"datenschutz {d//1024} KB | danke {t_danke//1024} KB | alt {len(alt_page)//1024} KB | "
       f"{count} Assets, {size//1024} KB")
