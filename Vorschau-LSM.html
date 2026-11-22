@@ -1,0 +1,50 @@
+<!--
+  Testvariante für den Abschnitt „Coaching“ der Startseite, im Stil von Live Shop Mastery.
+  scripts/build-site.py setzt diesen Abschnitt statt des Coaching-Abschnitts aus Neu.dc.html
+  ein und baut daraus /vorschau/ (noindex, nicht in der Sitemap, nirgends verlinkt).
+  Die Startseite selbst bleibt unverändert.
+  Marke aus /home/berk/projects/fatmir-coaching: Logo funnel/public/marke/lsm-logo-weiss.png,
+  Neon #63f655 und Termin-Karte aus funnel/src/bausteine/design2.css, Schrift Archivo,
+  Bild funnel/public/marke/live-zero-sauce-produkt-zeigen.jpg (echter Livestream).
+-->
+<style>
+  @font-face { font-family:"Archivo V"; font-style:normal; font-weight:700 800; font-stretch:100% 125%; font-display:swap; src:url(/assets/fonts/Archivo-latin.woff2) format("woff2"); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  /* Coaching als Live-Shop-Mastery-Block: Sand bleibt, darin die dunkle Termin-Karte von LSM */
+  .lsm { background:var(--sand); --lsm-neon:#63f655; --lsm-schwarz:#050a06; --lsm-grau:#acadae; --lsm-schrift:"Archivo V", "Archivo", var(--display); }
+  .lsm-card { position:relative; overflow:hidden; display:grid; gap:44px 56px; align-items:center; padding:clamp(30px,4.6vw,64px); border:1px solid #2f6b34; border-radius:28px; background:radial-gradient(48% 80% at 86% 50%, rgba(70,210,60,.14), transparent 70%), var(--lsm-schwarz); box-shadow:0 0 36px rgba(99,246,85,.12), 0 24px 50px -24px rgba(0,0,0,.45); color:#f9f9f9; }
+  .lsm-logo { width:auto; height:clamp(44px,4.4vw,60px); margin-bottom:clamp(30px,3.6vw,48px); }
+  .lsm h2 { font-family:var(--lsm-schrift); font-weight:800; font-stretch:104%; font-size:clamp(2.3rem,5vw,4.2rem); line-height:.95; letter-spacing:-.01em; text-transform:uppercase; }
+  .lsm h2 span { display:block; color:var(--lsm-neon); }
+  .lsm-zoom { margin-top:18px; font-size:1.08rem; line-height:1.45; color:var(--lsm-grau); }
+  .lsm-btn { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:58px; margin-top:clamp(30px,3.6vw,44px); padding:15px 28px; border-radius:12px; background:linear-gradient(90deg,#74ff6c,#3efb0a); color:#0d2202; font-family:var(--lsm-schrift); font-weight:700; font-size:1.02rem; line-height:1.25; text-align:center; box-shadow:0 0 28px rgba(90,250,60,.35), inset 0 1px 0 rgba(255,255,255,.35); transition:transform .3s var(--ease), box-shadow .3s ease; }
+  .lsm-btn:hover { color:#0d2202; box-shadow:0 0 42px rgba(90,250,60,.55), inset 0 1px 0 rgba(255,255,255,.35); }
+  .lsm-btn:focus-visible { outline-color:var(--lsm-neon); }
+  .lsm-btn svg { flex:none; width:18px; height:18px; }
+  .lsm-nb { white-space:nowrap; }
+  .lsm-phone { justify-self:center; width:min(100%,220px); }
+  .lsm-phone img { width:100%; border:7px solid #000; border-radius:30px; box-shadow:0 0 0 1px #2c2f35, 0 30px 60px -24px rgba(0,0,0,.8); }
+  @media (max-width:619px) {
+    .lsm-btn { display:flex; width:100%; }
+  }
+  @media (min-width:900px) {
+    .lsm-card { grid-template-columns:minmax(0,1fr) auto; }
+    .lsm-phone { width:250px; margin-right:clamp(0px,3vw,40px); }
+  }
+</style>
+
+<section class="sec lsm" id="coaching" aria-labelledby="coach-h">
+    <div class="wrap">
+      <div class="lsm-card" data-reveal>
+        <div>
+          <img class="lsm-logo" src="lsm-logo-weiss.png" width="839" height="240" alt="Live Shop Mastery">
+          <h2 id="coach-h">Live verkaufen <span>lernen</span></h2>
+          <p class="lsm-zoom">Fatmir live auf Zoom, mit Fragerunde.</p>
+          <a class="lsm-btn" href="https://liveshopmastery.de/?utm_source=fatmir.de&amp;utm_medium=website" data-magnet><span>Zum kostenlosen <span class="lsm-nb">Live-Shopping-Webinar</span></span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+        <figure class="lsm-phone">
+          <img src="lsm-live.webp" width="560" height="1104" alt="TikTok-Livestream, in dem Brustbizeps Zero Sauce verkauft wird" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>

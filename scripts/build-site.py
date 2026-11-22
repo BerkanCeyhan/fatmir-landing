@@ -4,7 +4,8 @@
     uv run --with pillow python scripts/build-site.py
 
 Ausgabe: docs/index.html, docs/kontakt/, docs/impressum/, docs/datenschutz/,
-docs/alt/, docs/neu/ (Weiterleitung), docs/assets/, robots.txt und sitemap.xml.
+docs/alt/, docs/vorschau/ (Testvariante, noindex), docs/neu/ (Weiterleitung), docs/assets/,
+robots.txt und sitemap.xml.
 
 Die Startseite kommt seit Oktober 2026 aus Neu.dc.html. Main.dc.html ist die
 alte Startseite: sie liegt archiviert unter /alt/ und liefert weiter die
@@ -398,6 +399,34 @@ index_page = f"""<!DOCTYPE html>
 </html>
 """
 (OUT / "index.html").write_text(index_page, encoding="utf-8")
+
+# /vorschau/: Startseite mit dem Coaching-Abschnitt aus Vorschau-LSM.html (Stil Live Shop
+# Mastery), zum Vergleichen mit der Live-Seite. noindex, nicht in der Sitemap, nicht verlinkt.
+v_src = (ROOT / "Vorschau-LSM.html").read_text(encoding="utf-8")
+v_style = re.search(r"<style>(.*?)</style>", v_src, re.S).group(1)
+v_section = re.search(r"<section.*?</section>", v_src, re.S).group(0)
+v_section = re.sub(r'src="([^"/:]+\.(?:png|jpe?g|webp|svg))"', r'src="assets/\1"', v_section)
+coach = re.compile(r'<section class="sec coach" id="coaching".*?</section>', re.S)
+assert len(coach.findall(n_body)) == 1
+v_body = coach.sub(lambda m: v_section, n_body).replace('src="assets/', 'src="../assets/')
+for _p in ("kontakt/", "impressum/", "datenschutz/"):
+    v_body = v_body.replace(f'href="{_p}"', f'href="../{_p}"')
+vorschau_page = f"""<!DOCTYPE html>
+<html lang="de">
+<head>
+{head("Vorschau | Fatmir Adzaj", INDEX_DESC, pg.SITE + "/", robots="noindex, nofollow", depth=1, css=n_style + v_style, preload_img="fatmir-hero-photo.webp")}
+</head>
+<body>
+{v_body}
+{consent_markup(1)}
+<script>{neu_index_js}</script>
+<script>{n_js}</script>
+<script>{consent_script()}</script>
+</body>
+</html>
+"""
+(OUT / "vorschau").mkdir(parents=True, exist_ok=True)
+(OUT / "vorschau" / "index.html").write_text(vorschau_page, encoding="utf-8")
 
 # /neu/ war der Vorschaulink und ist schon verschickt: leitet auf die Startseite
 (OUT / "neu").mkdir(parents=True, exist_ok=True)

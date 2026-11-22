@@ -381,6 +381,8 @@
     .faq-grid { grid-template-columns:minmax(0,.75fr) minmax(0,1.4fr); }
     .faq-side { position:sticky; top:110px; }
     .foot-top { grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr); }
+    /* Schriftzug am Desktop so breit wie die erste Spalte des Fußes */
+    .foot-mark img { width:calc((100% - 72px) * 1.5 / 3.5); }
   }
 
 
