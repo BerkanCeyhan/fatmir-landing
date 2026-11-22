@@ -9,8 +9,9 @@ Live über GitHub Pages aus dem Ordner `docs/`.
 - `Main.dc.html` / `Mobile.dc.html` — alte Startseite, archiviert unter fatmir.de/alt/
   (noindex). Main liefert weiter die Seitenlogik und Navigation/Fuß der Unterseiten.
   Stand vor dem Wechsel: Git-Tag `alte-startseite`
-- `Vorschau-LSM.html` — Testvariante des Coaching-Abschnitts im Stil von Live Shop Mastery
-  (Knopf zum Webinar statt Warteliste). Ergibt fatmir.de/vorschau/: Startseite mit diesem
+- `Vorschau-LSM.html` — Testvariante des Coaching-Abschnitts: Knopf zum Live-Shopping-Webinar
+  (Live Shop Mastery) statt Warteliste, Gestaltung von fatmir.de, LSM nur als kleines Logo.
+  Ergibt fatmir.de/vorschau/: Startseite mit diesem
   Abschnitt, noindex, nicht in der Sitemap, nirgends verlinkt
 - `scripts/build-site.py` — baut daraus `docs/` (Startseite, Unterseiten, `/alt/`,
   `/vorschau/`, `/neu/` als Weiterleitung auf `/`, `docs/assets/`)
